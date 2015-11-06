@@ -1,0 +1,184 @@
+{
+	"id": "1d4574a7-d1cf-e109-6196-305d50cf6040",
+	"name": "afrina",
+	"description": "",
+	"order": [
+		"aab510c3-b4c1-758a-6f06-78ea0f17e726",
+		"05639126-c3cf-e4e0-ce1e-03dbc2cf5001",
+		"0662b597-52a3-45ff-e44e-80c57175e1b3",
+		"d2033087-fdc9-0fb7-1074-ce2b5d002eb8",
+		"00ec0f85-0967-3887-3698-14dd73fb7d97",
+		"57445d7e-b826-9e0c-63d1-3549f6d415c0"
+	],
+	"folders": [],
+	"timestamp": 0,
+	"owner": "207647",
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "00ec0f85-0967-3887-3698-14dd73fb7d97",
+			"headers": "",
+			"url": "http://localhost:3000/api/authenticateUser",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "prithu@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "prithu",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1446819383185,
+			"name": "http://localhost:3000/api/authenticateUser",
+			"description": "",
+			"collectionId": "1d4574a7-d1cf-e109-6196-305d50cf6040",
+			"responses": []
+		},
+		{
+			"headers": "",
+			"url": "http://localhost:3000/api/roles",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/roles",
+			"description": "",
+			"descriptionFormat": "html",
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"id": "05639126-c3cf-e4e0-ce1e-03dbc2cf5001",
+			"collectionId": "1d4574a7-d1cf-e109-6196-305d50cf6040"
+		},
+		{
+			"headers": "",
+			"url": "http://localhost:3000/api/roles/563bb11a32fe2af45df7e719",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/roles/563bb11a32fe2af45df7e719",
+			"description": "",
+			"descriptionFormat": "html",
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"id": "0662b597-52a3-45ff-e44e-80c57175e1b3",
+			"collectionId": "1d4574a7-d1cf-e109-6196-305d50cf6040"
+		},
+		{
+			"id": "57445d7e-b826-9e0c-63d1-3549f6d415c0",
+			"headers": "",
+			"url": "http://localhost:3000/api/logout",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "1d4574a7-d1cf-e109-6196-305d50cf6040",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/logout",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446820243018,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "aab510c3-b4c1-758a-6f06-78ea0f17e726",
+			"headers": "",
+			"url": "http://localhost:3000/api/roles",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "roleType",
+					"value": "Student",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": "{}",
+			"time": 1446752629069,
+			"name": "http://localhost:3000/api/roles",
+			"description": "",
+			"collectionId": "1d4574a7-d1cf-e109-6196-305d50cf6040",
+			"rawModeData": null,
+			"descriptionFormat": "html",
+			"folder": null
+		},
+		{
+			"id": "d2033087-fdc9-0fb7-1074-ce2b5d002eb8",
+			"headers": "",
+			"url": "http://localhost:3000/api/users",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "2",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "neela@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "neela",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Neela",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "016161616161",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1446799324844,
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"collectionId": "1d4574a7-d1cf-e109-6196-305d50cf6040",
+			"responses": []
+		}
+	]
+}
