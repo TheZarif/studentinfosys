@@ -1,0 +1,18 @@
+syntax: glob
+
+# Visual Studio
+*.user
+*.sdf
+*.opensdf
+**/ipch/
+**/Debug/
+**/Release/
+**/bin/
+**/obj/
+
+# Eclipse
+**/bin/
+*.class
+
+# JetBrains IDEs
+**/.idea/workspace.xml
