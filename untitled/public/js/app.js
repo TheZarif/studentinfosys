@@ -12,13 +12,12 @@ var app = angular.module("app",[
 
 app.run(function ($rootScope) {
     $rootScope.baseUrl = "http://localhost:3000/api/";
-
     $rootScope.user = JSON.parse(localStorage.getItem('userObject'));
     console.log("Local storage User Object:");
     console.log($rootScope.user);
 })
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider
         .state('home', {
             url: '/home',
@@ -36,4 +35,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'LoginCtrl'
         })
     $urlRouterProvider.otherwise('/home')
+
+    $httpProvider.interceptors.push('authInterceptorService');
+});
+
+app.config(function(toastrConfig) {
+    angular.extend(toastrConfig, {
+        allowHtml: false,
+        closeButton: true,
+        closeHtml: '<button>&times;</button>',
+        extendedTimeOut: 1000,
+        messageClass: 'toast-message',
+        tapToDismiss: true,
+        timeOut: 3000,
+        titleClass: 'toast-title',
+        toastClass: 'toast'
+    });
 });

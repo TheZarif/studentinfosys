@@ -3,7 +3,7 @@
  */
 var ctrls = angular.module('controllers', []);
 
-ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state) {
+ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toastr) {
     $scope.username = "";
     $scope.password = "";
     $scope.rememberMe = false;
@@ -13,13 +13,13 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state) {
         if($scope.username != '' && $scope.password != ''){
             $http.post(url + 'authenticateUser', {email: $scope.username, password: $scope.password})
                 .success(function (data, status) {
-                    window.alert(("Success"))
+                    toastr.success('Logged in!', 'Success!');
                     $rootScope.user = data[0];
                     localStorage.setItem('userObject', JSON.stringify($rootScope.user));
                     $state.go('home')
                 })
                 .error(function () {
-                    window.alert("Failed")
+                    toastr.error('Log in failed', 'Error');
                 })
         }
     }

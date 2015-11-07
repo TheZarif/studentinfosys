@@ -3,7 +3,7 @@
  */
 
 ctrls.controller('HomeCtrl', function ($scope, $rootScope, $state, $http, toastr) {
-    if(!$rootScope.user) $state.go('login')
+    //if(!$rootScope.user) $state.go('login')
 
     var baseUrl = $rootScope.baseUrl;
 
