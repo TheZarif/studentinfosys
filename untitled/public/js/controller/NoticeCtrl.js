@@ -2,26 +2,25 @@
  * Created by Zarif on 08/11/2015.
  */
 
-ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toastr) {
+ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toastr) {
     //if(!$rootScope.user) $state.go('login')
 
     var baseUrl = $rootScope.baseUrl;
     init();
 
-    $scope.createCourse = function () {
+    $scope.createNotice = function () {
 
         if(!validate()) {
             toastr.warning('You must enter all fields', 'Error');
             return;
         }
 
-        var newCourse = {
-            name: $scope.courseName,
-            id: $scope.courseId,
-            credits: $scope.courseCredit
+        var newNotice = {
+            subject: $scope.subject,
+            description: $scope.description
         };
 
-        $http.post(baseUrl + "courses", newCourse)
+        $http.post(baseUrl + "notice", newNotice)
             .success(function () {
                 toastr.success('Course added!', 'Success!');
                 init();
@@ -32,19 +31,18 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
                     toastr.error('You are not authorized to do that', 'Error');
                 }
                 else{
-                    toastr.error('Could not add course', 'Error');
+                    toastr.error('Could not add notice', 'Error');
                 }
             })
     };
 
     function validate(){
-        return ($scope.courseName !=  ( "" || undefined ) &&  $scope.courseId !=  ( "" || undefined ) &&  $scope.courseCredit !=  ( "" || undefined ))
+        return ($scope.subject !=  ( "" || undefined ) &&  $scope.description !=  ( "" || undefined ) )
     }
 
     function init(){
-        $scope.courseName = "";
-        $scope.courseId = "";
-        $scope.courseCredit = "";
+        $scope.subject = "";
+        $scope.description = "";
     }
 
 });
