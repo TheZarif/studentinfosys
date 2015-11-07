@@ -1,68 +1,17 @@
 <div class="container">
-    <div class="panel panel-default col-md-3 left-bar">
-        <div class="panel-body">
-
-            <div class="btn-group-vertical" role="group" aria-label="button">
-
-                <button type="button" class="btn btn-default" ng-click="setActive('usersPanel')">Users</button>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Courses
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Course 1</a></li>
-                        <li><a href="#">Course 2</a></li>
-                    </ul>
-                </div>
-                <button type="button" class="btn btn-default">Notification</button>
-
+    <div class="col-md-3 left-bar">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role=presentation" ng-repeat="option in optionsList"
+                        ng-class="{active : selectedItem == option}" ng-click="selectItem(option)"><a href="">{{option.label}}</a>
+                    </li>
+                </ul>
             </div>
-
         </div>
+
     </div>
-
     <div class="panel panel-default col-md-9 right-bar">
-        <div class="panel-body">
-            <form id="loginform" class="form-horizontal" role="form">
-
-                <div style="margin-bottom: 25px" class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-"></i></span>
-                    <input id="email" ng-model="user.email" type="text" class="form-control" name="user.email" value="" placeholder="Email" required>
-                </div>
-
-                <div style="margin-bottom: 25px" class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="username" ng-model="user.userName" type="text" class="form-control" name="user.username" value="" placeholder="Username" required>
-                </div>
-
-                <div style="margin-bottom: 25px" class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="password" ng-model="password" type="password" class="form-control" name="password" placeholder="Password" required>
-                </div>
-
-                <div style="margin-bottom: 25px" class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                    <input id="contact-no" ng-model="user.contactNo" type="text" class="form-control" name="user.contactNo" value="" placeholder="Contact number" required>
-                </div>
-
-                <div style="margin-bottom: 25px" class="input-group">
-                    <select name="role" ng-model="user.roleId">
-                        <option value="admin">Admin</option>
-                        <option value="student">Student</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="staff">Staff</option>
-                    </select>
-                </div>
-
-                <div style="margin-top:10px" class="form-group">
-                    <!-- Button -->
-                    <div class="col-sm-12 controls">
-                        <a id="btn-login" href="#" class="btn btn-success" ng-click="createUser()">Create User</a>
-                    </div>
-                </div>
-
-            </form>
-        </div>
+        <div dashboard-content item="selectedItem.link"></div>
     </div>
 </div>

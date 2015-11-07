@@ -1,0 +1,78 @@
+<div ng-controller="HomeCtrl">
+    <h2>All users</h2>
+
+    <h4>Teachers</h4>
+    <table id="teacher-table" class="table">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Contact no.</th>
+            <th>Designation</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="teacher in teachers">
+            <td>{{teacher.userName}}</td>
+            <td>{{teacher.email}}</td>
+            <td>{{teacher.contactNo}}</td>
+            <td>{{teacher.designation}}</td>
+            <td>
+                <button>Edit</button>
+                <button>Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h4>Students</h4>
+    <table id="student-table" class="table">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Contact no.</th>
+            <th>Batch</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="student in students">
+            <td>{{student.userName}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.contactNo}}</td>
+            <td>{{student.batch}}</td>
+            <td>
+                <button>Edit</button>
+                <button>Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h4>Staff</h4>
+    <table id="staff-table" class="table">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Contact no.</th>
+            <th>Designation</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="staff in staffs">
+            <td>{{staff.userName}}</td>
+            <td>{{staff.email}}</td>
+            <td>{{staff.contactNo}}</td>
+            <td>{{staff.designation}}</td>
+            <td>
+                <button>Edit</button>
+                <button>Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

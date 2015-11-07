@@ -12,18 +12,27 @@ var app = angular.module("app",[
 
 app.run(function ($rootScope) {
     $rootScope.baseUrl = "http://localhost:3000/api/";
-    $rootScope.user = JSON.parse(localStorage.getItem('userObject'));
+    //$rootScope.user = JSON.parse(localStorage.getItem('userObject'));
+    $rootScope.user = {
+        userName: "Zarif",
+        roleId: "admin",
+        email: "Zarif@mg.com"
+    }
     console.log("Local storage User Object:");
     console.log($rootScope.user);
 })
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider
-        .state('home', {
-            url: '/home',
+        .state('dashboard', {
+            url: '/dashboard',
             templateUrl: 'views/dashboard.html',
-            controller: 'HomeCtrl'
+            controller: 'DashboardCtrl'
         })
+        .state('dashboard.item', {
+            url: '/:item'
+        })
+
         .state('test', {
             url: '/test',
             templateUrl: 'views/create_notice.html',
@@ -34,7 +43,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: 'views/login.html',
             controller: 'LoginCtrl'
         })
-    $urlRouterProvider.otherwise('/home')
+
+
+    $urlRouterProvider.otherwise('/dashboard')
 
     $httpProvider.interceptors.push('authInterceptorService');
 });

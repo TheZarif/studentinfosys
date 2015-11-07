@@ -38,7 +38,7 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
     };
 
     function validate(){
-        return ($scope.courseName !=  ( "" || undefined ) &&  $scope.courseId !=  ( "" || undefined ) &&  $scope.courseCredit !=  ( "" || undefined ))
+        return ($scope.courseName !=  ( "" && undefined ) &&  $scope.courseId !=  ( "" && undefined ) &&  $scope.courseCredit !=  ( "" && undefined ))
     }
 
     function init(){

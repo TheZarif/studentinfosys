@@ -37,7 +37,7 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
     };
 
     function validate(){
-        return ($scope.subject !=  ( "" || undefined ) &&  $scope.description !=  ( "" || undefined ) )
+        return ($scope.subject !=  ( "" && undefined ) &&  $scope.description !=  ( "" && undefined ) )
     }
 
     function init(){
