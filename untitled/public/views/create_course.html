@@ -1,41 +1,26 @@
 <div class="panel panel-default col-md-9 right-bar">
     <div class="panel-body">
-        <form id="create-user-form" class="form-horizontal" role="form">
+        <form id="create-course-form" class="form-horizontal" role="form">
 
             <div style="margin-bottom: 25px" class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                <input id="email" ng-model="user.email" type="text" class="form-control" name="user.email" value="" placeholder="Email" required>
+                Course Name:
+                <input id="name" ng-model="courseName" type="text" class="form-control" placeholder="Course Name" required>
             </div>
 
             <div style="margin-bottom: 25px" class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="username" ng-model="user.userName" type="text" class="form-control" name="user.username" value="" placeholder="Username" required>
+                Course Id:
+                <input id="id" ng-model="courseId" type="text" class="form-control" name="user.username" value="" placeholder="Username" required>
             </div>
 
             <div style="margin-bottom: 25px" class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="password" ng-model="password" type="password" class="form-control" name="password" placeholder="Password" required>
+                Credits:
+                <input id="credit" ng-model="courseCredit" type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
 
-            <div style="margin-bottom: 25px" class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
-                <input id="contact-no" ng-model="user.contactNo" type="text" class="form-control" name="user.contactNo" value="" placeholder="Contact number" required>
-            </div>
-
-            <div style="margin-bottom: 25px" class="input-group">
-                User type:
-                <select name="role" ng-model="user.roleId">
-                    <option value="admin">Admin</option>
-                    <option value="student">Student</option>
-                    <option value="teacher">Teacher</option>
-                    <option value="staff">Staff</option>
-                </select>
-            </div>
-
-            <div style="margin-top:10px" class="form-group">
+         <div style="margin-top:10px" class="form-group">
                 <!-- Button -->
                 <div class="col-sm-12 controls">
-                    <a id="btn-login" href="#" class="btn btn-success" ng-click="createUser()">Create User</a>
+                    <a id="btn-create" href="" class="btn btn-success" ng-click="createCourse()">Create Course</a>
                 </div>
             </div>
 

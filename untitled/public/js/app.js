@@ -26,8 +26,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('test', {
             url: '/test',
-            templateUrl: 'views/create_user.html',
-            controller: 'HomeCtrl'
+            templateUrl: 'views/create_course.html',
+            controller: 'CourseCtrl'
         })
         .state('login', {
             url: '/login',
