@@ -63,3 +63,4 @@ app.config(function(toastrConfig) {
         toastClass: 'toast'
     });
 });
+var ctrls = angular.module('controllers', []);

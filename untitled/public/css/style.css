@@ -19,12 +19,11 @@
 
 .left-bar
 {
-    padding: 5px;
-    padding-top: 80px;
+    padding: 80px 5px 5px;
 }
 
 .right-bar
 {
-    padding-top: 80px;
+    margin-top: 80px;
     min-height: 550px;
 }

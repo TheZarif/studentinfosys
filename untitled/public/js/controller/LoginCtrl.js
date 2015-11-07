@@ -1,7 +1,7 @@
 /**
  * Created by Zarif on 06/11/2015.
  */
-var ctrls = angular.module('controllers', []);
+
 
 ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toastr) {
     $scope.username = "";
