@@ -10,8 +10,10 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
 
     $scope.createCourse = function () {
 
-        if(!validate()) {
+        console.log(baseUrl);
+        if(!$scope.validate()) {
             toastr.warning('You must enter all fields', 'Error');
+            console.log($scope.courseName, $scope.courseCredit, $scope.courseId);
             return;
         }
 
@@ -37,8 +39,8 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
             })
     };
 
-    function validate(){
-        return ($scope.courseName !=  ( "" && undefined ) &&  $scope.courseId !=  ( "" && undefined ) &&  $scope.courseCredit !=  ( "" && undefined ))
+    $scope.validate = function(){
+        return (!!$scope.courseName) &&  (!!$scope.courseId) && (!!$scope.courseCredit);
     }
 
     function init(){

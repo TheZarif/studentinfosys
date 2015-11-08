@@ -2,7 +2,6 @@
  * Created by Zarif on 06/11/2015.
  */
 
-
 ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toastr) {
     $scope.username = "";
     $scope.password = "";
@@ -33,4 +32,4 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toast
 
 
 
-})
+});

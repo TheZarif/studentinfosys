@@ -3,7 +3,7 @@
  */
 beforeEach(module('controllers'));
 
-describe('LoginCtrl', function () {
+describe('Login Ctrl test', function () {
     var scope, httpBackend, createController, mockState, mockToastr, mockData;
 
     beforeEach(inject(function ($rootScope, $httpBackend, $controller) {
