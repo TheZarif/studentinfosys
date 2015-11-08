@@ -10,7 +10,7 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toast
     var url = 'http://localhost:3000/api/';
 
     $scope.submit = function () {
-        if($scope.username != '' && $scope.password != ''){
+        if($scope.validate()){
             $http.post(url + 'authenticateUser', {email: $scope.username, password: $scope.password})
                 .success(function (data, status) {
                     toastr.success('Logged in!', 'Success!');
@@ -22,6 +22,13 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toast
                     toastr.error('Log in failed', 'Error');
                 })
         }
+        else{
+            toastr.warning("Fields empty", "")
+        }
+    }
+
+    $scope.validate = function(){
+        return (!!$scope.username) && (!!$scope.password);
     }
 
 

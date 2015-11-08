@@ -20,11 +20,10 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.min.js',
       'bower_components/angular-toastr/dist/angular-toastr.min.js',
       'js/app.js',
-      'js/controller/.js',
+      'js/controller/*.js',
       'js/directives/*.js',
       'js/services/*.js',
-      'tests/demo.js',
-      'tests/DashboardFactoryTest.js'
+      'tests/*.js'
     ],
 
 
