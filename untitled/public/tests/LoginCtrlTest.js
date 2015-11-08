@@ -4,17 +4,17 @@
 beforeEach(module('controllers'));
 
 describe('LoginCtrl', function () {
-    var scope, httpBackend, createController, mockState, mockToastr;
+    var scope, httpBackend, createController, mockState, mockToastr, mockData;
 
     beforeEach(inject(function ($rootScope, $httpBackend, $controller) {
         httpBackend = $httpBackend;
         scope = $rootScope.$new();
 
-        mockState =     {go:    function ()         {return}};
+        mockState =     {go:    function ()         {}};
         mockToastr =    {
-            error: function (error)    {return},
-            warning: function (message)    {return},
-            success: function (message)    {return}
+            error: function (error)    {},
+            warning: function (message)    {},
+            success: function (message)    {}
         };
 
 
@@ -24,8 +24,13 @@ describe('LoginCtrl', function () {
                 '$state' : mockState,
                 'toastr' : mockToastr
             })
-        }
+        };
 
+        mockData = [
+            {
+                something: "something"
+            }
+        ]
 
     }));
 
@@ -37,14 +42,14 @@ describe('LoginCtrl', function () {
     describe('checking server login request', function () {
 
         it('should call toastr.error function when 403', function () {
-            var controller = createController();
+            createController();
             scope.username = "hello";
             scope.password = "abc";
 
             spyOn(mockToastr,'error').and.callThrough();
 
             httpBackend.whenPOST("http://localhost:3000/api/authenticateUser")
-                .respond(function (method, url, data, headers) {
+                .respond(function () {
                     return [403, 'response body', {}, 'TestPhrase'];
                 });
             scope.submit();
@@ -52,10 +57,10 @@ describe('LoginCtrl', function () {
             httpBackend.flush();
 
             expect(mockToastr.error).toHaveBeenCalled();
-        })
+        });
 
         it('should call state.go and toastr.success function when success', function () {
-            var controller = createController();
+            createController();
             scope.username = "hello";
             scope.password = "abc";
 
@@ -63,7 +68,7 @@ describe('LoginCtrl', function () {
             spyOn(mockState,'go').and.callThrough();
 
             httpBackend.whenPOST("http://localhost:3000/api/authenticateUser")
-                .respond(function (method, url, data, headers) {
+                .respond(function () {
                     return [200, 'response body', {}, 'TestPhrase'];
                 });
             scope.submit();
@@ -72,14 +77,48 @@ describe('LoginCtrl', function () {
 
             expect(mockToastr.success).toHaveBeenCalled();
             expect(mockState.go).toHaveBeenCalled();
+        });
+
+        it('should populate rootscope.user', function () {
+            createController();
+            scope.username = "hello";
+            scope.password = "abc";
+
+            httpBackend.whenPOST("http://localhost:3000/api/authenticateUser")
+                .respond(function () {
+                    return [200, mockData];
+                });
+            scope.submit();
+            scope.$apply();
+            httpBackend.flush();
+
+            expect(scope.user).toEqual(mockData[0]);
+        });
+
+        it('should call localstorate.setItem', function () {
+            createController();
+            scope.username = "hello";
+            scope.password = "abc";
+            spyOn(localStorage,'setItem').and.callThrough();
+
+            httpBackend.whenPOST("http://localhost:3000/api/authenticateUser")
+                .respond(function () {
+                    return [200, mockData];
+                });
+            scope.submit();
+            scope.$apply();
+            httpBackend.flush();
+
+            expect(localStorage.setItem).toHaveBeenCalled();
         })
 
 
-    })
+
+    });
 
     describe('checking validate function', function () {
         it('if both fields are not entered or both fields are undefined, should return false', function () {
-            var controller = createController();
+            createController();
             scope.username = "";
             scope.password = "";
 
@@ -89,10 +128,10 @@ describe('LoginCtrl', function () {
             scope.password = undefined;
 
             expect(scope.validate()).toBe(false);
-        })
+        });
 
         it('if either field is not entered, should return false', function () {
-            var controller = createController();
+            createController();
             scope.username = "as";
             scope.password = "";
 
@@ -107,10 +146,10 @@ describe('LoginCtrl', function () {
             scope.password = undefined;
 
             expect(scope.validate()).toBe(false);
-        })
+        });
 
         it('if both fields are entered, should return true', function () {
-            var controller = createController();
+            createController();
             scope.username = "as";
             scope.password = "as";
 

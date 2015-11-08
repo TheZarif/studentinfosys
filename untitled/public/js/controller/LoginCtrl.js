@@ -13,9 +13,9 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toast
         if($scope.validate()){
             $http.post(url + 'authenticateUser', {email: $scope.username, password: $scope.password})
                 .success(function (data, status) {
-                    toastr.success('Logged in!', 'Success!');
                     $rootScope.user = data[0];
                     localStorage.setItem('userObject', JSON.stringify($rootScope.user));
+                    toastr.success('Logged in!', 'Success!');
                     $state.go('home')
                 })
                 .error(function () {
