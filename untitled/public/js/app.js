@@ -8,7 +8,8 @@ var app = angular.module("app",[
     'ui.router',
     'toastr',
     'controllers',
-    'xeditable'
+    'xeditable',
+    'ui.bootstrap'
 ]);
 
 app.run(function ($rootScope) {
