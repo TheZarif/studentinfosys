@@ -112,3 +112,35 @@ exports.validateUser = function(req, res) {
         else res.json(users);
     });
 }
+exports.getAllStudents = function(req, res) {
+    User.find({ roleId: "Student" },function(err, users) {
+        if (err)
+            res.send(err);
+
+        res.json(users);
+    });
+}
+exports.getAllTeachers = function(req, res) {
+    User.find({ roleId: "Teacher" },function(err, users) {
+        if (err)
+            res.send(err);
+
+        res.json(users);
+    });
+}
+exports.getAllAdmins = function(req, res) {
+    User.find({ roleId: "Admin" },function(err, users) {
+        if (err)
+            res.send(err);
+
+        res.json(users);
+    });
+}
+exports.getAllStaffs = function(req, res) {
+    User.find({ roleId: "Staff" },function(err, users) {
+        if (err)
+            res.send(err);
+
+        res.json(users);
+    });
+}
