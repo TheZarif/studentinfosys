@@ -14,7 +14,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(session({resave: true, saveUninitialized: true, secret: 'SOMERANDOMSECRETHERE'}));
-
+var logger = require("morgan");
+///////////////////////auth
+app.use(logger('dev'));
+app.all('/*', function(req, res, next) {
+    // CORS headers
+    res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    // Set custom headers for CORS
+    res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
+    if (req.method == 'OPTIONS') {
+        res.status(200).end();
+    } else {
+        next();
+    }
+});
 
 mongoose.connect('mongodb://localhost/jetbrains');
 
@@ -22,6 +36,9 @@ exports = module.exports = app;
 var roleController = require('./controllers/roles.server.controller');
 var userController = require('./controllers/users.server.controller');
 var sessionController = require('./controllers/session.server.controller');
+var courseController = require('./controllers/courses.server.controller');
+var authorizationController = require('./authentication/auth');
+
 
 var router = express.Router();              // get an instance of the express Router
 //-------------------------------role
@@ -42,6 +59,17 @@ router.route('/users/:_id')
     .delete(userController.delete);
 router.route('/allUsers/:_id')
     .get(userController.getUsersByRoleId);
+//--------------------------------course
+router.route('/courses')
+    .post(courseController.create)
+    .get(courseController.list);
+router.route('/courses/:_id')
+    .put(courseController.update)
+    .delete(courseController.delete);
+/*
+ * Routes that can be accessed by any one
+ */
+router.route('/login').post( authorizationController.login);
 //-------------------------------session
 router.route('/authenticateUser').post(sessionController.login);
 router.route('/logout').get(sessionController.logout);
