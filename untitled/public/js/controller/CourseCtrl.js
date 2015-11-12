@@ -93,9 +93,23 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
             teacherAssigned: 'Raihan',
             semester: '8th'
         }
-    ]
+    ];
 
     $scope.updateCourse = function (course) {
+            $http.post(baseUrl + "updateCourse")
+                .success(function (courses) {
+                    toastr.success('Course updated');
+                    $scope.courses = courses;
+                })
+                .error(function (res, status) {
+                    if (status == 401) {
+                        toastr.error('You are not authorized to do that', 'Error');
+                        //$state.go();
+                    }
+                    else {
+                        toastr.error('Could not update course', 'Error');
+                    }
+                })
 
     }
 
