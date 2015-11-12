@@ -19,7 +19,8 @@
     </div>
 
     <div>
-        <h2>All courses</h2>
+        <h3 class="col-md-4">All courses</h3>
+        <span class="col-md-offset-4 search">Search: <input ng-model="query"></span>
         <table id="courses-table" class="table">
             <thead>
             <tr>
@@ -31,7 +32,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="course in courses">
+            <tr ng-repeat="course in courses | filter : query">
                 <td><a href="" editable-text="course.courseName" onaftersave="updateCourse(course)">{{course.courseName}}</a></td>
                 <td><a href="" editable-text="course.courseId" onaftersave="updateCourse(course)">{{course.courseId}}</a></td>
                 <td><a href="" editable-text="course.credits" onaftersave="updateCourse(course)">{{course.credits}}</a></td>
