@@ -99,3 +99,11 @@ exports.list = function(req, res) {
         res.json(eventNotificationList);
     });
 }
+exports.getNotificationsForUser = function(req, res) {
+    EventNotification.find({ receiverId: req.params._id },function(err, notifications) {
+        if (err)
+            res.send(err);
+
+        res.json(notifications);
+    });
+}
