@@ -7,7 +7,8 @@
 var app = angular.module("app",[
     'ui.router',
     'toastr',
-    'controllers'
+    'controllers',
+    'xeditable'
 ]);
 
 app.run(function ($rootScope) {
@@ -64,4 +65,9 @@ app.config(function(toastrConfig) {
         toastClass: 'toast'
     });
 });
+
+app.run(function(editableOptions) {
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
+
 var ctrls = angular.module('controllers', []);

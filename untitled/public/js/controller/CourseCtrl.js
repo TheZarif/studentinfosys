@@ -51,9 +51,9 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
     };
 
     $scope.getCourses = function () {
-        $http.get(baseUrl + "allcourses", {userId: userId})
+        $http.get(baseUrl + "allcourses")
             .success(function (courses) {
-                console.log('Courses retrieved for user: ' + userId);
+                console.log('Courses retrieved');
                 $scope.courses = courses;
             })
             .error(function (res, status) {
@@ -65,16 +65,40 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
                     toastr.error('Could not add course', 'Error');
                 }
             })
-    }
+    };
 
     $scope.validate = function () {
         return (!!$scope.courseName) && (!!$scope.courseId) && (!!$scope.courseCredit);
-    }
+    };
 
     function init() {
         $scope.courseName = "";
         $scope.courseId = "";
         $scope.courseCredit = "";
     }
+
+    //$scope.getCourses();
+    $scope.courses = [
+        {
+            courseName: "Network Security",
+            courseId: 'CSE 802',
+            credits: '3',
+            teacherAssigned: 'Raihan',
+            semester: '8th'
+        },
+        {
+            courseName: "Network Security",
+            courseId: 'CSE 802',
+            credits: '3',
+            teacherAssigned: 'Raihan',
+            semester: '8th'
+        }
+    ]
+
+    $scope.updateCourse = function (course) {
+
+    }
+
+
 
 });

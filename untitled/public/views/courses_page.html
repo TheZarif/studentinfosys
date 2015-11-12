@@ -18,15 +18,31 @@
         <ng-include src="'views/create_course.html'" ng-show="viewIfCreateCourse()"></ng-include>
     </div>
 
+    <div>
+        <h2>All courses</h2>
+        <table id="courses-table" class="table">
+            <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Course Id</th>
+                <th>Credits</th>
+                <th>Teacher Assigned</th>
+                <th>Batch</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="course in courses">
+                <td><a href="" editable-text="course.courseName" onaftersave="updateCourse(course)">{{course.courseName}}</a></td>
+                <td><a href="" editable-text="course.courseId" onaftersave="updateCourse(course)">{{course.courseId}}</a></td>
+                <td><a href="" editable-text="course.credits" onaftersave="updateCourse(course)">{{course.credits}}</a></td>
+                <td><a href="" editable-text="course.teacherAssigned" onaftersave="updateCourse(course)">{{course.teacherAssigned}}</a></td>
+                <td><a href="" editable-text="course.semester" onaftersave="updateCourse(course)">{{course.semester}}</a></td>
 
-    <ul class="nav nav-tabs col-md-12">
-        <li role="presentation" ng-class="{active : selectedItem == 'teacher'}" ng-click="selectedItem = 'teacher'"><a
-                href="">Teachers</a></li>
-        <li role="presentation" ng-class="{active : selectedItem == 'student'}" ng-click="selectedItem = 'student'"><a
-                href="">Students</a></li>
-        <li role="presentation" ng-class="{active : selectedItem == 'staff'}" ng-click="selectedItem = 'staff'"><a
-                href="">Staff</a></li>
-        <li role="presentation" ng-class="{active : selectedItem == 'admin'}" ng-click="selectedItem = 'admin'"><a
-                href="">Admin</a></li>
-    </ul>
+                <td>Edit</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
