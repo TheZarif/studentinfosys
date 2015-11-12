@@ -11,11 +11,11 @@ ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr
     var viewCreateUser = false;
     $scope.viewIfCreateUser = function () {
         return viewCreateUser;
-    }
+    };
     $scope.toggleViewCreateUser = function () {
-        if(viewCreateUser)       viewCreateUser = false;
-        else                            viewCreateUser = true;
-    }
+        if(viewCreateUser)      viewCreateUser = false;
+        else                    viewCreateUser = true;
+    };
 
     $scope.createUser = function (newUser) {
         $http.post(baseUrl + "users", newUser)

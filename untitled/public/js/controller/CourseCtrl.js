@@ -10,6 +10,15 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
     var baseUrl = $rootScope.baseUrl;
     init();
 
+    var viewCreateCourse = false;
+    $scope.viewIfCreateCourse = function () {
+        return viewCreateCourse;
+    };
+    $scope.toggleViewCreateCourse = function () {
+        if(viewCreateCourse)       viewCreateCourse = false;
+        else                       viewCreateCourse = true;
+    };
+
     $scope.createCourse = function () {
 
         console.log(baseUrl);

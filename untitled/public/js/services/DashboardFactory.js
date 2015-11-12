@@ -17,8 +17,8 @@ app.factory('DashboardFactory', [ function (){
             link: "users_page"
         },
         {
-            label: "Create Course",
-            link: "create_course"
+            label: "Courses",
+            link: "courses_page"
         },
         {
             label: "Notification",
