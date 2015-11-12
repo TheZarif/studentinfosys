@@ -14,6 +14,7 @@ app.run(function ($rootScope) {
     $rootScope.baseUrl = "http://localhost:3000/api/";
     //$rootScope.user = JSON.parse(localStorage.getItem('userObject'));
     $rootScope.user = {
+        userId: "BSSE0430",
         userName: "Zarif",
         roleId: "admin",
         email: "Zarif@mg.com"

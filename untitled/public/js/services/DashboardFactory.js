@@ -9,12 +9,12 @@ app.factory('DashboardFactory', [ function (){
         else if (role == "staff")       return staffList;
         else if (role == "teacher")       return teacherList;
 
-    }
+    };
 
     var adminList = [
         {
             label: "Profiles",
-            link: "create_user"
+            link: "users_page"
         },
         {
             label: "Create Course",

@@ -5,6 +5,7 @@
 ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toastr) {
     //if(!$rootScope.user) $state.go('login')
 
+    var userId = $rootScope.user.userId;
     var baseUrl = $rootScope.baseUrl;
     init();
 
@@ -36,8 +37,27 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
             })
     };
 
+    $scope.getNotifications = function () {
+        $http.get(baseUrl + "notifcations", {userId : userId})
+            .success(function (notifications) {
+                console.log('notifications retrieved for user: '+ userId);
+                $scope.notifications = notifications;
+            })
+            .error(function (res, status) {
+                if(status == 401) {
+                    toastr.error('You are not authorized to do that', 'Error');
+                    //$state.go();
+                }
+                else{
+                    toastr.error('Could not add course', 'Error');
+                }
+            })
+    };
+
+
+
     function validate(){
-        return ($scope.subject !=  ( "" && undefined ) &&  $scope.description !=  ( "" && undefined ) )
+        return (!!$scope.subject  &&  !!$scope.description)
     }
 
     function init(){

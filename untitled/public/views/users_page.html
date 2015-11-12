@@ -1,0 +1,32 @@
+<div ng-controller="UserCtrl">
+
+    <div class="panel panel-default col-md-12">
+        <div class="form-group col-md-12" ng-show="!viewIfCreateUser()">
+            <!-- Button -->
+            <div class="col-sm-12 controls">
+                <a id="view" href="" class="btn btn-success" ng-click="toggleViewCreateUser()">Create User</a>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12" ng-show="viewIfCreateUser()">
+            <!-- Button -->
+            <div class="col-sm-offset-4 controls pull-right">
+                <a id="hide" href="" class="btn btn-success" ng-click="toggleViewCreateUser()">Hide</a>
+            </div>
+        </div>
+
+        <ng-include src="'views/create_user.html'" ng-show="viewIfCreateUser()"></ng-include>
+    </div>
+
+
+    <ul class="nav nav-tabs col-md-12">
+        <li role="presentation" ng-class="{active : selectedItem == 'teacher'}" ng-click="selectedItem = 'teacher'"><a
+                href="">Teachers</a></li>
+        <li role="presentation" ng-class="{active : selectedItem == 'student'}" ng-click="selectedItem = 'student'"><a
+                href="">Students</a></li>
+        <li role="presentation" ng-class="{active : selectedItem == 'staff'}" ng-click="selectedItem = 'staff'"><a
+                href="">Staff</a></li>
+        <li role="presentation" ng-class="{active : selectedItem == 'admin'}" ng-click="selectedItem = 'admin'"><a
+                href="">Admin</a></li>
+    </ul>
+</div>
