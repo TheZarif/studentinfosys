@@ -1,0 +1,13 @@
+<div ng-controller="StudentCtrl">
+    <h2>Select course</h2>
+    <div class="panel panel-default col-md-12">
+        <div class="form-group col-md-12">
+            <!-- Button -->
+            <div class="col-sm-12 controls" ng-repeat="course in courses">
+                <a id="view" href="" class="btn btn-primary" ng-click="selectCourse(course)">{{course.courseName}}</a>
+            </div>
+        </div>
+    </div>
+
+    //get marks for selected course
+</div>

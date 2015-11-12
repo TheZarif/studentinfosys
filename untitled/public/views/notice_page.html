@@ -1,6 +1,6 @@
 <div ng-controller="NoticeCtrl">
 
-    <div class="panel panel-default col-md-12">
+    <div class="panel panel-default col-md-12" ng-if="authorizer.createNotice(roleType)">
         <div class="form-group col-md-12" ng-show="!viewIfCreateNotice()">
             <!-- Button -->
             <div class="col-sm-12 controls">
@@ -18,5 +18,6 @@
         <ng-include src="'views/create_notice.html'" ng-show="viewIfCreateNotice()"></ng-include>
     </div>
 
+    <ng-include src="'views/all_notice.html'"></ng-include>
 
 </div>

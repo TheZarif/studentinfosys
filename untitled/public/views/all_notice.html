@@ -1,0 +1,17 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Subject</th>
+        <th>Body</th>
+        <th>Sender</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="notice in notices" class="info">
+        <td>{{notice.subject}}</td>
+        <td>{{notice.body}}</td>
+        <td>{{notice.sender}}</td>
+        <td class="red thick"><a href="" ng-click="deleteNotice(notice)"> X Remove</a></td>
+    </tr>
+    </tbody>
+</table>

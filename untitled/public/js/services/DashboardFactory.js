@@ -32,7 +32,7 @@ app.factory('DashboardFactory', [ function (){
         },
         {
             label: "Notification",
-            link: "notification"
+            link: "notice_page"
         }
     ];
     var staffList = [
