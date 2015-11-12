@@ -28,3 +28,8 @@
     min-height: 550px;
     padding: 20px;
 }
+
+.thick
+{
+    font-weight: 700;
+}

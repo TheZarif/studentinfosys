@@ -6,6 +6,7 @@ ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr
     //if(!$rootScope.user) $state.go('login')
 
     var baseUrl = $rootScope.baseUrl;
+    $scope.selectedItem = 'teacher'
 
     $scope.user = {};
     var viewCreateUser = false;
@@ -37,6 +38,47 @@ ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr
                 }
 
             })
+    };
+
+    $scope.selectItem = function (type) {
+        $scope.selectedItem = type;
+        $scope.getUsers(type);
     }
 
-})
+    $scope.getUsers = function(type){
+        $http.get(baseUrl + "allusers")
+            .success(function (users) {
+                console.log('users retrieved for user: '+ userId);
+                $scope.users = users;
+            })
+            .error(function (res, status) {
+                if(status == 401) {
+                    toastr.error('You are not authorized to do that', 'Error');
+                    $scope.users = [];
+                    //$state.go();
+                }
+                else{
+                    toastr.error('Could not load users', 'Error');
+                    $scope.users = [];
+                }
+            })
+    };
+
+    $scope.users = [
+        {
+            _id: "10101",
+            userName: "Sami",
+            email: "sami@yahoo.com",
+            contactNo: "+88017171756",
+            designation: ""
+        },
+        {
+            _id: "10111",
+            userName: "Jamil",
+            email: "jamil@yahoo.com",
+            contactNo: "+88017171756",
+            designation: "Associate Professor"
+        }
+    ]
+
+});

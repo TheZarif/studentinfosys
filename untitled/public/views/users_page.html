@@ -19,14 +19,21 @@
     </div>
 
 
-    <ul class="nav nav-tabs col-md-12">
-        <li role="presentation" ng-class="{active : selectedItem == 'teacher'}" ng-click="selectedItem = 'teacher'"><a
+    <ul class="nav nav-tabs col-md-8 thick">
+        <li role="presentation" ng-class="{active : selectedItem == 'teacher'}" ng-click="selectItem('teacher')"><a
                 href="">Teachers</a></li>
-        <li role="presentation" ng-class="{active : selectedItem == 'student'}" ng-click="selectedItem = 'student'"><a
+        <li role="presentation" ng-class="{active : selectedItem == 'student'}" ng-click="selectItem('student')"><a
                 href="">Students</a></li>
-        <li role="presentation" ng-class="{active : selectedItem == 'staff'}" ng-click="selectedItem = 'staff'"><a
+        <li role="presentation" ng-class="{active : selectedItem == 'staff'}" ng-click="selectItem('staff')"><a
                 href="">Staff</a></li>
-        <li role="presentation" ng-class="{active : selectedItem == 'admin'}" ng-click="selectedItem = 'admin'"><a
+        <li role="presentation" ng-class="{active : selectedItem == 'admin'}" ng-click="selectItem('admin')"><a
                 href="">Admin</a></li>
     </ul>
+    <div class="col-md-offset-4">
+        Search
+        <input ng-model="query">
+    </div>
+
+    <ng-include src="'views/all_users.html'" ng-if="selectedItem!='student'"></ng-include>
+    <ng-include src="'views/all_students.html'" ng-if="selectedItem==='student'"></ng-include>
 </div>
