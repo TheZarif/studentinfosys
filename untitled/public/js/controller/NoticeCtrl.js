@@ -9,6 +9,15 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
     var baseUrl = $rootScope.baseUrl;
     init();
 
+    var viewCreateNotice = false;
+    $scope.viewIfCreateNotice = function () {
+        return viewCreateNotice;
+    };
+    $scope.toggleViewCreateNotice = function () {
+        if(viewCreateNotice)       viewCreateNotice = false;
+        else                       viewCreateNotice = true;
+    };
+
     $scope.createNotice = function () {
 
         if(!validate()) {
@@ -29,7 +38,7 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
             })
             .error(function (res, status) {
                 if(status == 401) {
-                    toastr.error('You are not authorized to do that', 'Error');
+                    toastr.error('You are not authorized to do that', 'Sorry');
                 }
                 else{
                     toastr.error('Could not add notice', 'Error');

@@ -35,8 +35,8 @@
                 <td><a href="" editable-text="course.courseName" onaftersave="updateCourse(course)">{{course.courseName}}</a></td>
                 <td><a href="" editable-text="course.courseId" onaftersave="updateCourse(course)">{{course.courseId}}</a></td>
                 <td><a href="" editable-text="course.credits" onaftersave="updateCourse(course)">{{course.credits}}</a></td>
-                <td><a href="" editable-text="course.teacherAssigned" onaftersave="updateCourse(course)">{{course.teacherAssigned}}</a></td>
-                <td><a href="" editable-text="course.semester" onaftersave="updateCourse(course)">{{course.semester}}</a></td>
+                <td><a href="" editable-text="course.teacherAssigned" onaftersave="updateCourse(course)" e-typeahead="teacher for teacher in teachers| filter:$viewValue">{{course.teacherAssigned}}</a></td>
+                <td><a href="" editable-text="course.semester" onaftersave="updateCourse(course)" e-typeahead="semester for semester in semesters" onbeforesave="validateSemester($data)">{{course.semester}}</a></td>
             </tr>
             </tbody>
         </table>

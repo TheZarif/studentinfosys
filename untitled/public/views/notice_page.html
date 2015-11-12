@@ -1,0 +1,22 @@
+<div ng-controller="NoticeCtrl">
+
+    <div class="panel panel-default col-md-12">
+        <div class="form-group col-md-12" ng-show="!viewIfCreateNotice()">
+            <!-- Button -->
+            <div class="col-sm-12 controls">
+                <a id="view" href="" class="btn btn-success" ng-click="toggleViewCreateNotice()">Create Notice</a>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12" ng-show="viewIfCreateNotice()">
+            <!-- Button -->
+            <div class="col-sm-offset-4 controls pull-right">
+                <a id="hide" href="" class="btn btn-success" ng-click="toggleViewCreateNotice()">Hide</a>
+            </div>
+        </div>
+
+        <ng-include src="'views/create_notice.html'" ng-show="viewIfCreateNotice()"></ng-include>
+    </div>
+
+
+</div>

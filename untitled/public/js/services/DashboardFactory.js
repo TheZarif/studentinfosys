@@ -22,7 +22,7 @@ app.factory('DashboardFactory', [ function (){
         },
         {
             label: "Notification",
-            link: "create_notice"
+            link: "notice_page"
         }
     ];
     var studentList = [
