@@ -1,5 +1,5 @@
 /**
- * Created by IIT on 12-Nov-15.
+ * Created by User on 13-Nov-15.
  */
 /**
  * Created by User on 03-Nov-15.
@@ -15,16 +15,18 @@ var mongoose = require('mongoose'),
 /**
  * Category Schema
  */
-var CourseSchema = new Schema({
+var CategorySchema = new Schema({
     // the property name
-    courseName:  String,
-    courseCode : String,
-    credit : Number,
-    teacherAssigned : String,
-    semester : String
+    name : String,
+    description : String,
+    weight : Number,
+    isSelected : Boolean,
+    date : Date,
+    hasSubCategory : Boolean,
+    courseId : String
 
 });
 
 // Expose the model to other objects (similar to a 'public' setter).
-module.exports = mongoose.model('Course', CourseSchema);
+module.exports = mongoose.model('Category', CategorySchema);
 

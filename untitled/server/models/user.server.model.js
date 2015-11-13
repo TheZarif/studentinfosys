@@ -18,7 +18,11 @@ var UserSchema = new Schema({
     email : String,
     password : String,
     userName : String,
-    contactNo : String
+    contactNo : String,
+    designation : String,
+    isActive : Boolean,
+    batchNo : String,
+    currentSemester : String,
 });
 
 // Expose the model to other objects (similar to a 'public' setter).

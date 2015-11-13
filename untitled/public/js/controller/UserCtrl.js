@@ -6,6 +6,7 @@ ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr
     //if(!$rootScope.user) $state.go('login')
 
     var baseUrl = $rootScope.baseUrl;
+    var userId = $rootScope.user.userId;
     $scope.roleType = $rootScope.user.roleType;
     $scope.authorizer = AuthorizationFactory.isAuthorized;
 
@@ -22,8 +23,8 @@ ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr
         else                    viewCreateUser = true;
     };
 
-    $scope.createUser = function (newUser) {
-        $http.post(baseUrl + "users", newUser)
+    $scope.createUser = function () {
+        $http.post(baseUrl + "users", $scope.user)
             .success(function (data, status) {
                 toastr.success('User added!', 'Success!');
                 $scope.user = {};
@@ -50,7 +51,7 @@ ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr
     }
 
     $scope.getUsers = function(type){
-        $http.get(baseUrl + "allusers")
+        $http.get(baseUrl + "users", type)
             .success(function (users) {
                 console.log('users retrieved for user: '+ userId);
                 $scope.users = users;
@@ -68,6 +69,16 @@ ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr
             })
     };
 
+    $scope.editUser = function (user) {
+        $http.put(baseUrl + "users/" + user.userId, user)
+            .success(function (data) {
+                toastr.success("User updated");
+            })
+            .error(function (err) {
+                toastr.error("Error")
+            })
+    }
+
     $scope.users = [
         {
             _id: "10101",
@@ -84,5 +95,7 @@ ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr
             designation: "Associate Professor"
         }
     ]
+
+    $scope.getUsers();
 
 });

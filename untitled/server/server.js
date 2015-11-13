@@ -38,6 +38,7 @@ var userController = require('./controllers/users.server.controller');
 var sessionController = require('./controllers/session.server.controller');
 var courseController = require('./controllers/courses.server.controller');
 var eventNotificationController = require('./controllers/eventNotifications.server.controller');
+var receiverNotification     = require('./controllers/receiverNotification.controller.js');
 var authorizationController = require('./authentication/auth');
 
 
@@ -70,10 +71,22 @@ router.route('/courses')
 router.route('/courses/:_id')
     .put(courseController.update)
     .delete(courseController.delete);
+router.route('/getCoursesForTeacher/:_id').get(courseController.getCoursesForTeacher);
+
 //-------------------------------eventnotification
 router.route('/events')
     .post(eventNotificationController.create)
     .get(eventNotificationController.list);
+router.route('/events/:_id')
+    .put(eventNotificationController.update)
+    .delete(eventNotificationController.delete);
+//-----------------------------------receiverNotification
+router.route('/receiverEventList')
+    .get(receiverNotification.list);
+router.route('/receiverEventList/:_id')
+    .delete(receiverNotification.delete);
+router.route('/getNotificationsForUser/:_id')
+    .get(receiverNotification.getNotificationsForUser);
 router.route('/events/:_id')
     .put(eventNotificationController.update)
     .delete(eventNotificationController.delete);

@@ -14,6 +14,7 @@
  */
 var mongoose = require('mongoose');
 var EventNotification     = require('../models/eventNotification.server.model.js');
+var receiverNotification     = require('../controllers/receiverNotification.controller.js');
 //var  Role = mongoose.model('Role');
 
 /**
@@ -26,7 +27,7 @@ exports.create = function(req, res) {
     eventNotification.type = req.body.type;
     eventNotification.description = req.body.description;
     eventNotification.subject = req.body.subject;
-    eventNotification.receiverId = "dummyReceiver";
+    eventNotification.receiverId = "563b7d9f4a5df71c13d4300d";
     if(req.body.fileUrl){
         eventNotification.fileUrl = req.body.fileUrl;
         eventNotification.hasFile = true;
@@ -36,10 +37,14 @@ exports.create = function(req, res) {
     eventNotification.eventDate = req.body.eventDate;
     // save the bear and check for errors
     eventNotification.save(function(err) {
-        if (err)
-            res.send(err);
-        res.json(eventNotification);
+      //  if (err)
+         //   res.send(err);
+     //  else
+         //   res.json(eventNotification);}
+        console.log(eventNotification);
     });
+    console.log("bhsvsyu"+eventNotification._id);
+    receiverNotification.create(eventNotification.receiverId,eventNotification._id,eventNotification,res);
 };
 
 /**
@@ -56,7 +61,7 @@ exports.update = function(req, res) {
         eventNotification.type = req.body.type;
         eventNotification.description = req.body.description;
         eventNotification.subject = req.body.subject;
-        eventNotification.receiverId = "dummyReceiver";
+        eventNotification.receiverId = "564505ebe55e8eec13fd3276";
         if(req.body.fileUrl){
             eventNotification.fileUrl = req.body.fileUrl;
             eventNotification.hasFile = true;

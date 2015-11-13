@@ -22,9 +22,10 @@ exports.create = function(req, res) {
     user.password = req.body.password;
     user.userName = req.body.userName;
     user.contactNo = req.body.contactNo;
-
-
-
+    user.designation = req.body.designation;
+    user.isActive = req.body.isActive;
+    user.batchNo = req.body.batchNo;
+    user.currentSemester = req.body.currentSemester;
     // save the bear and check for errors
     user.save(function(err) {
         if (err)
@@ -59,7 +60,10 @@ exports.update = function(req, res) {
         user.password = req.body.password;
         user.userName = req.body.userName;
         user.contactNo = req.body.contactNo;
-
+        user.designation = req.body.designation;
+        user.isActive = req.body.isActive;
+        user.batchNo = req.body.batchNo;
+        user.currentSemester = req.body.currentSemester;
         // save the bear
         user.save(function(err) {
             if (err)

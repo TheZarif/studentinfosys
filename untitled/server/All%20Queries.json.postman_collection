@@ -1,0 +1,854 @@
+{
+	"id": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+	"name": "All Queries",
+	"description": "",
+	"order": [
+		"4645551c-4d5d-c360-4888-903028940f43",
+		"9b87f4ee-7d0d-8cf8-84f7-d2eac120f5c6",
+		"9572a04c-d1c5-2cbf-adc8-683f34e15b5c",
+		"7d28d289-0f4c-9494-53cd-38f6d4c28707",
+		"770065a2-1859-e834-050a-262efd277b42",
+		"85691713-40de-99bd-cf0e-f64fa8e84773",
+		"8dccd7ae-67c6-f66a-fa18-4a1a37fa7dcf",
+		"42034907-5d2b-de91-61ef-abedc8c7dece",
+		"5f5f2ec8-e42d-6634-611e-0b026194689f",
+		"70f19b7d-1cc8-38b7-708d-fa30bf969b48",
+		"3541dad6-9a9a-c660-a7c8-fe835c722b01",
+		"2dc602d2-aed4-17de-257d-5047f2d2d851",
+		"b8424807-0fb3-c4bb-aeab-05996dccf732",
+		"745f30ef-80b6-1faa-3a75-24fcdc5d2822",
+		"d7697e05-bf69-17c9-6307-7d8d9bd40fa2",
+		"c9b26c0e-7981-9928-e09d-9b98a91b3668",
+		"a81d59f7-6062-4edc-250c-48daf3dd4b00",
+		"fb36c154-4f34-7588-c63a-2941b677fc7b",
+		"b9b7d815-ca1d-01e8-794b-a0c0b3de299d",
+		"e05cc51f-6b0b-36f5-b8b9-049cd5da80f0",
+		"bf15e894-9c29-8f9a-fb22-5c1dc78d65ed",
+		"12c7b08e-b62e-0c56-0313-878f5a4a2d17",
+		"1747a281-1fd5-183b-941c-52b25d3b481a",
+		"5e6d74c5-24a0-9ce0-b253-7cd23f4bd691"
+	],
+	"folders": [],
+	"timestamp": 1446738654233,
+	"owner": 0,
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "12c7b08e-b62e-0c56-0313-878f5a4a2d17",
+			"headers": "",
+			"url": "http://localhost:3000/api/getNotificationsForUser/563b7cec4a5df71c13d4300b",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447368041082,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "1747a281-1fd5-183b-941c-52b25d3b481a",
+			"headers": "",
+			"url": "http://localhost:3000/api/getCoursesForTeacher/563b7be84a5df71c13d4300a",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447409977614,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "2dc602d2-aed4-17de-257d-5047f2d2d851",
+			"headers": "",
+			"url": "http://localhost:3000/api/login",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "username",
+					"value": "afrina",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/login",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447183301497,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "3541dad6-9a9a-c660-a7c8-fe835c722b01",
+			"headers": "",
+			"url": "http://localhost:3000/api/authenticateUser",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "email",
+					"value": "afrina@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446742885538,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "42034907-5d2b-de91-61ef-abedc8c7dece",
+			"headers": "",
+			"url": "http://localhost:3000/api/users/563b7d304a5df71c13d4300c",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "PUT",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "563b18b9f0ec4a1c07c4e28e",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "zarif@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Zarif Masud 30",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01547891254",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446739319649,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "4645551c-4d5d-c360-4888-903028940f43",
+			"headers": "",
+			"url": "http://localhost:3000/api/roles",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/roles",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446738786831,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "5e6d74c5-24a0-9ce0-b253-7cd23f4bd691",
+			"headers": "",
+			"url": "http://localhost:3000/api/courses",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "teacherAssigned",
+					"value": "Kazi Sakib",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "semester",
+					"value": "5th",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "courseName",
+					"value": "Distributed Systems",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "courseCode",
+					"value": "cse -501",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "credit",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447410527457,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "5f5f2ec8-e42d-6634-611e-0b026194689f",
+			"headers": "",
+			"url": "http://localhost:3000/api/users/563b7d304a5df71c13d4300c",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "DELETE",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "563b18b9f0ec4a1c07c4e28e",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "zarif@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Zarif Masud 30",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01547891254",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446739348684,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "70f19b7d-1cc8-38b7-708d-fa30bf969b48",
+			"headers": "",
+			"url": "http://localhost:3000/api/allUsers/563b133873d21b80078508d7",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446741498597,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "745f30ef-80b6-1faa-3a75-24fcdc5d2822",
+			"headers": "",
+			"url": "http://localhost:3000/api/events",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "type",
+					"value": "final Xam",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "A FINAL XAM mail for all students",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "subject",
+					"value": "final xam routine",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "receiverId",
+					"value": "abc",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fileUrl",
+					"value": "/c/ghfd/gfhjgf",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventDate",
+					"value": "2015/5/31",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447364083065,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "770065a2-1859-e834-050a-262efd277b42",
+			"headers": "",
+			"url": "http://localhost:3000/api/users",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "563b18b9f0ec4a1c07c4e28e",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "afrina@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Afrina Trisha",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01670410289",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446739192600,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "7d28d289-0f4c-9494-53cd-38f6d4c28707",
+			"headers": "",
+			"url": "http://localhost:3000/api/users",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "563b133873d21b80078508d7",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "sakib@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Kazi Sakib",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01845296523",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/roles",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446738976129,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "85691713-40de-99bd-cf0e-f64fa8e84773",
+			"headers": "",
+			"url": "http://localhost:3000/api/users",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446739204185,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "8dccd7ae-67c6-f66a-fa18-4a1a37fa7dcf",
+			"headers": "",
+			"url": "http://localhost:3000/api/users",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "563b18b9f0ec4a1c07c4e28e",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "zarif@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Zarif Masud",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01547891254",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446739256452,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "9572a04c-d1c5-2cbf-adc8-683f34e15b5c",
+			"headers": "",
+			"url": "http://localhost:3000/api/users",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/roles",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446738952851,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "9b87f4ee-7d0d-8cf8-84f7-d2eac120f5c6",
+			"headers": "",
+			"url": "http://localhost:3000/api/roles",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/roles",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1446738805562,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "a81d59f7-6062-4edc-250c-48daf3dd4b00",
+			"headers": "",
+			"url": "http://localhost:3000/api/events",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "type",
+					"value": "mid Xam",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "A midXAM mail for all students",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "subject",
+					"value": "MID routine",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "receiverId",
+					"value": "abc",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fileUrl",
+					"value": "/c/ghfd/gfhjgf",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventDate",
+					"value": "2015/5/31",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447364402349,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "b8424807-0fb3-c4bb-aeab-05996dccf732",
+			"headers": "",
+			"url": "http://localhost:3000/api/login",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "email",
+					"value": "afrina@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447184516649,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "b9b7d815-ca1d-01e8-794b-a0c0b3de299d",
+			"headers": "",
+			"url": "http://localhost:3000/api/receiverEventsList",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447365662062,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "bf15e894-9c29-8f9a-fb22-5c1dc78d65ed",
+			"headers": "",
+			"url": "http://localhost:3000/api/receiverEventList",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447367938830,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "c9b26c0e-7981-9928-e09d-9b98a91b3668",
+			"headers": "",
+			"url": "http://localhost:3000/api/events",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447364238480,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "d7697e05-bf69-17c9-6307-7d8d9bd40fa2",
+			"headers": "",
+			"url": "http://localhost:3000/api/events/564505afe55e8eec13fd3275",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "PUT",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "type",
+					"value": "ScholarShip",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "A ScholarShipmail for all students",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "subject",
+					"value": "scholar student",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "receiverId",
+					"value": "abc",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fileUrl",
+					"value": "/c/ghfd/gfhjgf",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventDate",
+					"value": "2015/5/31",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447364205536,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "e05cc51f-6b0b-36f5-b8b9-049cd5da80f0",
+			"headers": "",
+			"url": "http://localhost:3000/api/receiverEventsListgetNotificationsForUser/dummy",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447365959036,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "fb36c154-4f34-7588-c63a-2941b677fc7b",
+			"headers": "",
+			"url": "http://localhost:3000/api/events/564506d8232b622808f6b3a5",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "DELETE",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447364446647,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
