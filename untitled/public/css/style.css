@@ -1,3 +1,74 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #2E4172;
+}
+.panel-body {
+    padding: 15px;
+    background-color: #A5B0CB;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar-default .navbar-brand {
+    color: #A5B0CB;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #A5B0CB;
+}
+.btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.navbar-nav>li>.dropdown-menu {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: mintcream;
+}
+
+.panel {
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    background-color: #A5B0CB;
+}
+
+.navbar-default
+{
+    background-color: #020C23;
+    border-color: #e7e7e7;
+}
+.navbar-fixed-top
+{
+    top: 0;
+    border-width: 0 0 1px;
+}
+.navbar-fixed-bottom, .navbar-fixed-top
+{
+        border-radius: 0;
+}
+.navbar-fixed-bottom, .navbar-fixed-top
+{
+        position: fixed;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+}
+
+
+.editable-click, a.editable-click
+{
+    color: black;
+}
 .navbar-login
 {
     width: 305px;
@@ -38,3 +109,4 @@
 {
     color: #fc8c84;
 }
+
