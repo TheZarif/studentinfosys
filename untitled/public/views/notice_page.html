@@ -1,6 +1,6 @@
 <div ng-controller="NoticeCtrl">
 
-    <div class="panel panel-default col-md-12" ng-if="authorizer.createNotice(roleType)">
+    <div class="panel panel-default col-md-12" ng-if="authorizer.isAuthorized.createNotice(roleType)">
         <div class="form-group col-md-12" ng-show="!viewIfCreateNotice()">
             <!-- Button -->
             <div class="col-sm-12 controls">

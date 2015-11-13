@@ -37,12 +37,16 @@ app.factory('DashboardFactory', [ function (){
     ];
     var staffList = [
         {
+            label: "Students",
+            link: "users_page"
+        },
+        {
             label: "Courses",
             link: "courses"
         },
         {
             label: "Notification",
-            link: "notification"
+            link: "notice_page"
         }
     ];
     var teacherList = [
@@ -52,7 +56,7 @@ app.factory('DashboardFactory', [ function (){
         },
         {
             label: "Notification",
-            link: "notification"
+            link: "notice_page"
         }
     ];
 

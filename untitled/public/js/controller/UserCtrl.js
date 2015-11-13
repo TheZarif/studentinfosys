@@ -2,11 +2,15 @@
  * Created by Zarif on 06/11/2015.
  */
 
-ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr) {
+ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr, AuthorizationFactory) {
     //if(!$rootScope.user) $state.go('login')
 
     var baseUrl = $rootScope.baseUrl;
-    $scope.selectedItem = 'teacher'
+    $scope.roleType = $rootScope.user.roleType;
+    $scope.authorizer = AuthorizationFactory.isAuthorized;
+
+    $scope.selectedItem = 'teacher';
+
 
     $scope.user = {};
     var viewCreateUser = false;

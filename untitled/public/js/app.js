@@ -18,7 +18,7 @@ app.run(function ($rootScope) {
     $rootScope.user = {
         userId: "BSSE0430",
         userName: "Zarif",
-        roleId: "admin",
+        roleType: "teacher",
         email: "Zarif@mg.com"
     }
     console.log("Local storage User Object:");
