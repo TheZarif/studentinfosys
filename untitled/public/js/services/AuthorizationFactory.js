@@ -5,10 +5,10 @@
 
 app.factory('AuthorizationFactory', [ function (){
 
-    var student = "student";
-    var teacher = "teacher";
-    var staff = "staff";
-    var admin = "admin";
+    var student = "Students";
+    var teacher = "Teachers";
+    var staff = "Staffs";
+    var admin = "Admins";
 
 
     var isAuthorized = {

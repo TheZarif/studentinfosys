@@ -4,10 +4,10 @@
 
 app.factory('DashboardFactory', [ function (){
     var getOptions = function (role) {
-        if      (role == "admin")             return adminList;
-        else if (role == "student")           return studentList;
-        else if (role == "staff")             return staffList;
-        else if (role == "teacher")           return teacherList;
+        if      (role == "Admins")             return adminList;
+        else if (role == "Students")           return studentList;
+        else if (role == "Staffs")             return staffList;
+        else if (role == "Teachers")           return teacherList;
 
     };
 
@@ -39,10 +39,6 @@ app.factory('DashboardFactory', [ function (){
         {
             label: "Students",
             link: "users_page"
-        },
-        {
-            label: "Courses",
-            link: "courses"
         },
         {
             label: "Notification",
