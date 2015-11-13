@@ -4,10 +4,10 @@
 
 app.factory('DashboardFactory', [ function (){
     var getOptions = function (role) {
-        if      (role == "Admins")             return adminList;
-        else if (role == "Students")           return studentList;
-        else if (role == "Staffs")             return staffList;
-        else if (role == "Teachers")           return teacherList;
+        if      (role == "Admin")             return adminList;
+        else if (role == "Student")           return studentList;
+        else if (role == "Staff")             return staffList;
+        else if (role == "Teacher")           return teacherList;
 
     };
 

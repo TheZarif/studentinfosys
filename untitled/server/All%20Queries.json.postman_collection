@@ -26,7 +26,27 @@
 		"bf15e894-9c29-8f9a-fb22-5c1dc78d65ed",
 		"12c7b08e-b62e-0c56-0313-878f5a4a2d17",
 		"1747a281-1fd5-183b-941c-52b25d3b481a",
-		"5e6d74c5-24a0-9ce0-b253-7cd23f4bd691"
+		"5e6d74c5-24a0-9ce0-b253-7cd23f4bd691",
+		"28610f83-8766-1618-3390-8df4c507ba0f",
+		"2578efb0-27ee-7e35-c3c2-4c145e731c58",
+		"0f2607cf-f91d-fa9b-5522-258e0e70de75",
+		"a9ea0a3e-8963-1d5b-a4e6-c6e7ce9f790a",
+		"0258164a-d071-7caf-a68a-6d991b8f0f99",
+		"022671ea-ef23-7260-a70a-a1c301bee025",
+		"5e09079c-06e7-235a-ce92-b875791a57eb",
+		"0534a4a5-de54-ad63-cfb4-a70b01deaf59",
+		"2cbcc510-192e-9bfb-aec7-ae6b640f486e",
+		"93b39518-c8f2-ad00-8d48-9488294e3c61",
+		"ee773930-f43b-2315-1437-c349e4ed618f",
+		"04b5848e-ca4f-ac69-02c6-8483c30d820a",
+		"394af424-cf3a-2a16-5277-04b6e0e4fb43",
+		"19342e26-3f43-8d7c-c4af-841e2f005659",
+		"8d87e142-fd4b-9632-7b2b-d7cca38a3caa",
+		"5de4b251-dea2-26aa-564c-e74bfbf70dc3",
+		"16154041-6801-081b-fa37-8fdc3d5e39f8",
+		"a475c8c1-362c-8623-43f1-3c750af750c4",
+		"a0ff1e1b-7de5-beae-a566-2a494edfe974",
+		"7eda5469-1e04-14f1-edd0-1522a2091bae"
 	],
 	"folders": [],
 	"timestamp": 1446738654233,
@@ -34,6 +54,230 @@
 	"remoteLink": "",
 	"public": false,
 	"requests": [
+		{
+			"id": "022671ea-ef23-7260-a70a-a1c301bee025",
+			"headers": "content-type: application/json\nx-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwMjgzMTQ4NzF9.6DrUBJAzaNUi7qDY4a9e6YP-omTKOj-cJAv5OHzEhqw\nx-key: afrina@gmail.com\n",
+			"url": "http://localhost:3000/api/v1/admin/courses",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447423571714,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "0258164a-d071-7caf-a68a-6d991b8f0f99",
+			"headers": "",
+			"url": "http://localhost:3000/api/login",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "email",
+					"value": "afrina@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447422655851,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "04b5848e-ca4f-ac69-02c6-8483c30d820a",
+			"headers": "x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDc5NjQzNTV9.6iwDq4DNiBrB1P-OILWSNpEm_ikpbFzXf7RCIbZcQu4\nx-key: sakib@gmail.com\n",
+			"url": "http://localhost:3000/api/authenticate/users",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "Teacher",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "naushin@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01523647896",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Naushin",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "designation",
+					"value": "Professor",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isActive",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447443247295,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "0534a4a5-de54-ad63-cfb4-a70b01deaf59",
+			"headers": "",
+			"url": "http://localhost:3000/api/login",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "email",
+					"value": "bari@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447442376282,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "0f2607cf-f91d-fa9b-5522-258e0e70de75",
+			"headers": "",
+			"url": "http://localhost:3000/api/users/563b7fe0c90e3a4812da9d13",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "PUT",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "Student",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "trisha@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Afrina Trisha",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01547891254",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "designation",
+					"value": null,
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isActive",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "batchNo",
+					"value": "4",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "currentSemester",
+					"value": "6th",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447419959387,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
 		{
 			"id": "12c7b08e-b62e-0c56-0313-878f5a4a2d17",
 			"headers": "",
@@ -55,6 +299,25 @@
 			"helperAttributes": {}
 		},
 		{
+			"id": "16154041-6801-081b-fa37-8fdc3d5e39f8",
+			"headers": "x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDkzMjY4NDh9.DEGqem6JFl1-Ijv12SZACa7tpiypmUfjrMdsqpxV-V8\nx-key: afrina@gmail.com\n",
+			"url": "http://localhost:3000/api/authenticate/getCoursesForStudent/563b7cec4a5df71c13d4300b",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1447444561084,
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"responses": []
+		},
+		{
 			"id": "1747a281-1fd5-183b-941c-52b25d3b481a",
 			"headers": "",
 			"url": "http://localhost:3000/api/getCoursesForTeacher/563b7be84a5df71c13d4300a",
@@ -68,6 +331,240 @@
 			"description": "",
 			"descriptionFormat": "html",
 			"time": 1447409977614,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "19342e26-3f43-8d7c-c4af-841e2f005659",
+			"headers": "x-access-token: null\nx-key: null\n",
+			"url": "http://localhost:3000/api/courses",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "teacherAssigned",
+					"value": "Sumon Ahmed",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "semester",
+					"value": "2nd",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "courseName",
+					"value": "Object Oriented Concepts",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "courseCode",
+					"value": "cse -201",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "credit",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447443812994,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "2578efb0-27ee-7e35-c3c2-4c145e731c58",
+			"headers": "",
+			"url": "http://localhost:3000/api/users/563b7d9f4a5df71c13d4300d",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "PUT",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "Student",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "zarif@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Zarif Masud 30",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01547891254",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "designation",
+					"value": null,
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isActive",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "batchNo",
+					"value": "4",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "currentSemester",
+					"value": "8th",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447419904112,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "28610f83-8766-1618-3390-8df4c507ba0f",
+			"headers": "",
+			"url": "http://localhost:3000/api/users/563b7d304a5df71c13d4300c",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "PUT",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "Student",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "afrina@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Afrina Trisha",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01547891254",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "designation",
+					"value": null,
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isActive",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "batchNo",
+					"value": "4",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "currentSemester",
+					"value": "8",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447419660846,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "2cbcc510-192e-9bfb-aec7-ae6b640f486e",
+			"headers": "",
+			"url": "http://localhost:3000/api/login",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "email",
+					"value": "khaled@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447442398157,
 			"version": 2,
 			"responses": [],
 			"tests": "",
@@ -134,6 +631,26 @@
 			"description": "",
 			"descriptionFormat": "html",
 			"time": 1446742885538,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "394af424-cf3a-2a16-5277-04b6e0e4fb43",
+			"headers": "content-type: application/json\nx-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDcyMjMxODF9.7U6xbMZFjk4rYe0SCVO-vZknmzgc4D6lB-BftihJ6uY\nx-key: sakib@gmail.com\n",
+			"url": "http://localhost:3000/api/authenticate/users/56463b10de40f54412eb27c0",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447443617664,
 			"version": 2,
 			"responses": [],
 			"tests": "",
@@ -212,35 +729,87 @@
 			"helperAttributes": {}
 		},
 		{
-			"id": "5e6d74c5-24a0-9ce0-b253-7cd23f4bd691",
+			"id": "5de4b251-dea2-26aa-564c-e74bfbf70dc3",
+			"headers": "x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDcyMjMxODF9.7U6xbMZFjk4rYe0SCVO-vZknmzgc4D6lB-BftihJ6uY\nx-key: sakib@gmail.com\n",
+			"url": "http://localhost:3000/api//authenticate/getCoursesForTeacher/",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447443977108,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "5e09079c-06e7-235a-ce92-b875791a57eb",
 			"headers": "",
-			"url": "http://localhost:3000/api/courses",
+			"url": "http://localhost:3000/api/login",
 			"pathVariables": {},
 			"preRequestScript": "",
 			"method": "POST",
 			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
 			"data": [
 				{
+					"key": "email",
+					"value": "sakib@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447442366205,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "5e6d74c5-24a0-9ce0-b253-7cd23f4bd691",
+			"headers": "x-access-token: null\nx-key: null\n",
+			"url": "http://localhost:3000/api/courses",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
 					"key": "teacherAssigned",
-					"value": "Kazi Sakib",
+					"value": "Sumon Ahmed",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "semester",
-					"value": "5th",
+					"value": "2nd",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "courseName",
-					"value": "Distributed Systems",
+					"value": "Object Oriented Concepts",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "courseCode",
-					"value": "cse -501",
+					"value": "cse -201",
 					"type": "text",
 					"enabled": true
 				},
@@ -252,15 +821,15 @@
 				}
 			],
 			"dataMode": "urlencoded",
-			"name": "http://localhost:3000/api/events",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1447410527457,
 			"version": 2,
-			"responses": [],
 			"tests": "",
 			"currentHelper": "normal",
-			"helperAttributes": {}
+			"helperAttributes": {},
+			"time": 1447443809953,
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"responses": []
 		},
 		{
 			"id": "5f5f2ec8-e42d-6634-611e-0b026194689f",
@@ -493,6 +1062,57 @@
 			"helperAttributes": {}
 		},
 		{
+			"id": "7eda5469-1e04-14f1-edd0-1522a2091bae",
+			"headers": "x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDk1MDI2Mzl9.0uRbMulw0_xXsqNxtOYgzkhLWoWUHlPZ6uB-L5jmiDQ\nx-key: sakib@gmail.com\n",
+			"url": "http://localhost:3000/api/authenticate/events",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "type",
+					"value": "new event",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "a event created",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "subject",
+					"value": "test event",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fileurl",
+					"value": "C:/afile/k.txt",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventDate",
+					"value": "2015/5/5",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447444832309,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
 			"id": "85691713-40de-99bd-cf0e-f64fa8e84773",
 			"headers": "",
 			"url": "http://localhost:3000/api/users",
@@ -506,6 +1126,57 @@
 			"description": "",
 			"descriptionFormat": "html",
 			"time": 1446739204185,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "8d87e142-fd4b-9632-7b2b-d7cca38a3caa",
+			"headers": "x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDcyMjMxODF9.7U6xbMZFjk4rYe0SCVO-vZknmzgc4D6lB-BftihJ6uY\nx-key: sakib@gmail.com\n",
+			"url": "http://localhost:3000/api/authenticate/courses/56463d8dde40f54412eb27c1",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "PUT",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "teacherAssigned",
+					"value": "Sumon Ahmed",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "semester",
+					"value": "2nd",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "courseName",
+					"value": "Object Oriented Concepts",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "courseCode",
+					"value": "cse -203",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "credit",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447443909721,
 			"version": 2,
 			"responses": [],
 			"tests": "",
@@ -564,6 +1235,25 @@
 			"helperAttributes": {}
 		},
 		{
+			"id": "93b39518-c8f2-ad00-8d48-9488294e3c61",
+			"headers": "content-type: application/json\nx-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDcyMjMxODF9.7U6xbMZFjk4rYe0SCVO-vZknmzgc4D6lB-BftihJ6uY\nx-key: sakib@gmail.com\n",
+			"url": "http://localhost:3000/api/authenticate/users",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1447444859103,
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"responses": []
+		},
+		{
 			"id": "9572a04c-d1c5-2cbf-adc8-683f34e15b5c",
 			"headers": "",
 			"url": "http://localhost:3000/api/users",
@@ -597,6 +1287,45 @@
 			"description": "",
 			"descriptionFormat": "html",
 			"time": 1446738805562,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "a0ff1e1b-7de5-beae-a566-2a494edfe974",
+			"headers": "x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDkzMjY4NDh9.DEGqem6JFl1-Ijv12SZACa7tpiypmUfjrMdsqpxV-V8\nx-key: sakib@gmail.com\n",
+			"url": "http://localhost:3000/api/authenticate/events",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1447444854375,
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"responses": []
+		},
+		{
+			"id": "a475c8c1-362c-8623-43f1-3c750af750c4",
+			"headers": "x-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDkzMjY4NDh9.DEGqem6JFl1-Ijv12SZACa7tpiypmUfjrMdsqpxV-V8\nx-key: afrina@gmail.com\n",
+			"url": "http://localhost:3000/api/authenticate/getCoursesForStudent/563b7cec4a5df71c13d4300b",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/events",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447444565567,
 			"version": 2,
 			"responses": [],
 			"tests": "",
@@ -654,6 +1383,26 @@
 			"description": "",
 			"descriptionFormat": "html",
 			"time": 1447364402349,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "a9ea0a3e-8963-1d5b-a4e6-c6e7ce9f790a",
+			"headers": "content-type: application/json\nx-access-token: null\nx-key: null\n",
+			"url": "http://localhost:3000/api/v1/admin/courses",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447422463574,
 			"version": 2,
 			"responses": [],
 			"tests": "",
@@ -824,6 +1573,69 @@
 			"description": "",
 			"descriptionFormat": "html",
 			"time": 1447365959036,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "ee773930-f43b-2315-1437-c349e4ed618f",
+			"headers": "content-type: application/json\nx-access-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE0NDgwNDcyMjMxODF9.7U6xbMZFjk4rYe0SCVO-vZknmzgc4D6lB-BftihJ6uY\nx-key: sakib@gmail.com\n",
+			"url": "http://localhost:3000/api/authenticate/users",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "e9c14160-978f-4b6e-a6f6-16748bc77faf",
+			"data": [
+				{
+					"key": "roleId",
+					"value": "Teacher",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "iit123",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "naushin@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contactNo",
+					"value": "01523647896",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "userName",
+					"value": "Naushin",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "designation",
+					"value": "Professor",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "isActive",
+					"value": "true",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3000/api/users",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1447442628691,
 			"version": 2,
 			"responses": [],
 			"tests": "",

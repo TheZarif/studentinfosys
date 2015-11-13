@@ -83,6 +83,7 @@ exports.list = function(req, res) {
             res.send(err);
 
         res.json(courseList);
+       // console.log(courseList);
     });
 }
 exports.getCoursesForTeacher = function (req,res) {
@@ -92,11 +93,27 @@ exports.getCoursesForTeacher = function (req,res) {
            console.log(err);
     else {teacherName = user.userName;
             console.log(teacherName);
-            Course.find({ teacherAssigned: teacherName },function(err, users) {
+            Course.find({ teacherAssigned: teacherName },function(err, courses) {
                 if (err)
                     res.send(err);
 
-                res.json(users);
+                res.json(courses);
+            });
+        }
+    });
+}
+exports.getCoursesForStudent = function (req,res) {
+    var studentSemester;
+    User.findOne({ _id: req.params._id },function(err, user) {
+        if (err)
+            console.log(err);
+        else { studentSemester = user.currentSemester;
+            console.log(studentSemester);
+            Course.find({ semester: studentSemester },function(err, courses) {
+                if (err)
+                    res.send(err);
+
+                res.json(courses);
             });
         }
     });

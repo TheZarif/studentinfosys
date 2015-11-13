@@ -43,14 +43,24 @@ var auth = {
         });
     },
 
-    validateUser: function(username) {
+    validateUser: function(key) {
 // spoofing the DB response for simplicity
-        var dbUserObj = { // spoofing a userobject from the DB.
-            name: 'arvind',
-            role: 'admin',
-            username: 'arvind@myapp.com'
-        };
-        return dbUserObj;
+
+        User.findOne({email: key}, function (err, user) {
+            var dbUserObj;
+            if (err) {
+                console.log(err);
+                // dbUserObj = err;
+            }
+            if (user) {
+                console.log("got model");
+                dbUserObj = user;
+                console.log(dbUserObj);
+                return dbUserObj;
+                //res.json(genToken(dbUserObj));
+            }
+
+        });
     },
 }
 // private method

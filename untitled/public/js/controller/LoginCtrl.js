@@ -2,24 +2,35 @@
  * Created by Zarif on 06/11/2015.
  */
 
-ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toastr) {
-    $scope.username = "";
+ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toastr, UserAuthFactory, AuthenticationFactory, $window) {
+    $scope.email = "";
     $scope.password = "";
     $scope.rememberMe = false;
     var url = 'http://localhost:3000/api/';
 
     $scope.submit = function () {
         if($scope.validate()){
-            $http.post(url + 'authenticateUser', {email: $scope.username, password: $scope.password})
-                .success(function (data, status) {
-                    $rootScope.user = data[0];
+            UserAuthFactory.login($scope.email, $scope.password)
+                .success(function (data) {
+                    AuthenticationFactory.isLogged = true;
+                    AuthenticationFactory.user = data.user.email;
+                    AuthenticationFactory.userRole = data.user.roleId;
+
+                    $window.sessionStorage.token = data.token;
+                    $window.sessionStorage.user = data.user.email; // to fetch the user details on refresh
+                    $window.sessionStorage.userRole = data.user.roleId; // to fetch the user details on refresh
+
+                    $rootScope.user = data.user;
                     localStorage.setItem('userObject', JSON.stringify($rootScope.user));
                     toastr.success('Logged in!', 'Success!');
-                    $state.go('home')
+                    $state.go('dashboard')
                 })
                 .error(function () {
-                    toastr.error('Log in failed', 'Error');
+                    toastr.error("Invalid Credentials");
                 })
+            ;
+
+
         }
         else{
             toastr.warning("Fields empty", "")
@@ -27,7 +38,7 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toast
     }
 
     $scope.validate = function(){
-        return (!!$scope.username) && (!!$scope.password);
+        return (!!$scope.email) && (!!$scope.password);
     }
 
 
