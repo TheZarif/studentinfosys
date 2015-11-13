@@ -17,13 +17,12 @@ ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr
 
     var viewCreateUser = false;
     $scope.viewIfCreateUser = function () {
-        $scope.toggleViewCreateUser = function () {
-            if(viewCreateUser)      viewCreateUser = false;
-            viewCreateUser = true;
-            else {
-            }
-        };
         return viewCreateUser;
+    };
+
+    $scope.toggleViewCreateUser = function () {
+        if(viewCreateUser)      viewCreateUser = false;
+        else {                  viewCreateUser = true;}
     };
 
     $scope.createUser = function () {
