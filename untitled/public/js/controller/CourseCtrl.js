@@ -8,7 +8,6 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
     if ($rootScope.user)    userId = $rootScope.user.userId || "";
     else                    userId = "";
     var baseUrl = $rootScope.baseUrl;
-    init();
 
     var viewCreateCourse = false;
     $scope.viewIfCreateCourse = function () {
@@ -19,25 +18,20 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
         else                       viewCreateCourse = true;
     };
 
-    $scope.createCourse = function () {
+    $scope.course = {};
+    $scope.courses = []
 
-        console.log(baseUrl);
+    $scope.createCourse = function () {
         if (!$scope.validate()) {
-            toastr.warning('You must enter all fields', 'Error');
-            console.log($scope.courseName, $scope.courseCredit, $scope.courseId);
+            toastr.warning('You must enter all fields', 'Oops!');
             return;
         }
 
-        var newCourse = {
-            name: $scope.courseName,
-            id: $scope.courseId,
-            credits: $scope.courseCredit
-        };
-
-        $http.post(baseUrl + "courses", newCourse)
-            .success(function () {
+        $http.post(baseUrl + "courses", $scope.course)
+            .success(function (course) {
                 toastr.success('Course added!', 'Success!');
-                init();
+                $scope.course = {};
+                $scope.courses.push(course);
                 console.log('Course added');
             })
             .error(function (res, status) {
@@ -51,7 +45,7 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
     };
 
     $scope.getCourses = function () {
-        $http.get(baseUrl + "allcourses")
+        $http.get(baseUrl + "courses")
             .success(function (courses) {
                 console.log('Courses retrieved');
                 $scope.courses = courses;
@@ -68,14 +62,13 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
     };
 
     $scope.validate = function () {
-        return (!!$scope.courseName) && (!!$scope.courseId) && (!!$scope.courseCredit);
+        return (!!$scope.course.courseName) && (!!$scope.course.courseCode) && (!!$scope.course.credit);
     };
 
     $scope.updateCourse = function (course) {
-            $http.post(baseUrl + "updateCourse")
-                .success(function (courses) {
+            $http.put(baseUrl + "courses/"+ course._id, course)
+                .success(function (data) {
                     toastr.success('Course updated');
-                    $scope.courses = courses;
                 })
                 .error(function (res, status) {
                     if (status == 401) {
@@ -88,13 +81,6 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
                 })
 
     };
-
-    function init() {
-        $scope.courseName = "";
-        $scope.courseId = "";
-        $scope.courseCredit = "";
-    }
-
 
     $scope.getTeachers = function(){
         $http.get(baseUrl + "teachers")
@@ -113,7 +99,7 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
             })
     };
     //$scope.getTeachers();
-    //$scope.getCourses();
+    $scope.getCourses();
     $scope.teachers= [
         "Rayhan",
         "Sakib",

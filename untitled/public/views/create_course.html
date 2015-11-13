@@ -3,17 +3,17 @@
         <form id="create-course-form" class="form-horizontal" role="form">
             <div style="margin-bottom: 25px" class="input-group">
                 Course Name:
-                <input id="name" ng-model="courseName" type="text" class="form-control" placeholder="Course Name" required>
+                <input id="name" ng-model="course.courseName" type="text" class="form-control" placeholder="Course Name" required>
             </div>
 
             <div style="margin-bottom: 25px" class="input-group">
                 Course Id:
-                <input id="id" ng-model="courseId" type="text" class="form-control" name="user.username" value="" placeholder="Course Id" required>
+                <input id="id" ng-model="course.courseCode" type="text" class="form-control" value="" placeholder="Course Code" required>
             </div>
 
             <div style="margin-bottom: 25px" class="input-group">
                 Credits:
-                <input id="credit" ng-model="courseCredit" type="password" class="form-control" name="password" placeholder="Credits" required>
+                <input id="credit" ng-model="course.credit" type="number" class="form-control" placeholder="Credits" required>
             </div>
 
          <div style="margin-top:10px" class="form-group">
