@@ -20,13 +20,13 @@
 
 
     <ul class="nav nav-tabs col-md-8 thick">
-        <li role="presentation" ng-if="authorizer.createStudent(roleType)" ng-class="{active : selectedItem == 'student'}" ng-click="selectItem('student')"><a
+        <li role="presentation" ng-if="authorizer.createStudent(roleType)" ng-class="{active : selectedItem == 'Students'}" ng-click="selectItem('Students')"><a
                 href="">Students</a></li>
-        <li role="presentation" ng-if="authorizer.createTeacher(roleType)" ng-class="{active : selectedItem == 'teacher'}" ng-click="selectItem('teacher')"><a
+        <li role="presentation" ng-if="authorizer.createTeacher(roleType)" ng-class="{active : selectedItem == 'Teachers'}" ng-click="selectItem('Teachers')"><a
                 href="">Teachers</a></li>
-        <li role="presentation" ng-if="authorizer.createStaff(roleType)" ng-class="{active : selectedItem == 'staff'}" ng-click="selectItem('staff')"><a
+        <li role="presentation" ng-if="authorizer.createStaff(roleType)" ng-class="{active : selectedItem == 'Staffs'}" ng-click="selectItem('Staffs')"><a
                 href="">Staff</a></li>
-        <li role="presentation" ng-if="authorizer.createAdmin(roleType)" ng-class="{active : selectedItem == 'admin'}" ng-click="selectItem('admin')"><a
+        <li role="presentation" ng-if="authorizer.createAdmin(roleType)" ng-class="{active : selectedItem == 'Admins'}" ng-click="selectItem('Admins')"><a
                 href="">Admin</a></li>
     </ul>
     <div class="col-md-offset-4">
