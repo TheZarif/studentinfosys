@@ -9,15 +9,14 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
     $scope.roleType = $rootScope.user.roleType;
     var baseUrl = $rootScope.baseUrl;
     $scope.authorizer = AuthorizationFactory;
-    init();
+    $scope.event = {};
 
     var viewCreateNotice = false;
     $scope.viewIfCreateNotice = function () {
         return viewCreateNotice;
     };
     $scope.toggleViewCreateNotice = function () {
-        if(viewCreateNotice)       viewCreateNotice = false;
-        else                       viewCreateNotice = true;
+        viewCreateNotice = !viewCreateNotice;
     };
 
     $scope.createNotice = function () {
@@ -27,15 +26,10 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
             return;
         }
 
-        var newNotice = {
-            subject: $scope.subject,
-            description: $scope.description
-        };
-
-        $http.post(baseUrl + "notice", newNotice)
+        $http.post(baseUrl + "events", $scope.event)
             .success(function () {
-                toastr.success('Course added!', 'Success!');
-                init();
+                toastr.success('Notice sent!', 'Success!');
+                $scope.event = {};
                 console.log('Course added');
             })
             .error(function (res, status) {
@@ -43,16 +37,16 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
                     toastr.error('You are not authorized to do that', 'Sorry');
                 }
                 else{
-                    toastr.error('Could not add notice', 'Error');
+                    toastr.error('Could not add event', 'Error');
                 }
             })
     };
 
-    $scope.getNotifications = function () {
-        $http.get(baseUrl + "notifcations", {userId : userId})
+    $scope.getEvents = function () {
+        $http.get(baseUrl + "getNotificationsForUser/" + userId)
             .success(function (notifications) {
                 console.log('notifications retrieved for user: '+ userId);
-                $scope.notices = notices;
+                $scope.events = events;
             })
             .error(function (res, status) {
                 if(status == 401) {
@@ -65,13 +59,12 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
             })
     };
 
-    $scope.deleteNotice = function (notice) {
-        remove($scope.notices, notice);
+    $scope.deleteNotice = function (event) {
+        remove($scope.events, event);
 
-        $http.get(baseUrl + "notice", {userId : userId})
-            .success(function (notifications) {
-                console.log('notifications retrieved for user: '+ userId);
-                remove(notices, notice);
+        $http.delete(baseUrl + "events/" + event._id)
+            .success(function () {
+                remove(events, event);
             })
             .error(function (res, status) {
                 if(status == 401) {
@@ -84,7 +77,7 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
             })
     };
 
-    $scope.notices = [
+    $scope.events = [
         {
             subject: "Oooh",
             body: "Hello",
@@ -100,17 +93,12 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
 
 
     function validate(){
-        return (!!$scope.subject  &&  !!$scope.description)
+        return (!!$scope.event && ($scope.event != {}) && !!$scope.event.subject  &&  !!$scope.event.description)
     }
 
-    function init(){
-        $scope.subject = "";
-        $scope.description = "";
-    }
-
-    function remove(notices, notice){
-        var index = notices.indexOf(notice);
-        if(index > -1)      notices.splice(index, 1);
+    function remove(events, event){
+        var index = events.indexOf(event);
+        if(index > -1)      events.splice(index, 1);
     }
 
 });
