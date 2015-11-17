@@ -60,6 +60,7 @@ router.route('/roles/:_id')
     .put(roleController.update)
         .delete(roleController.delete);
 //-------------------------------user
+
 router.route('/authenticate/users')
     .post(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.create)
     .get(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.list);
@@ -107,12 +108,53 @@ router.route('/authenticate/receiverEventList/:_id')
     .delete(checkAuthenticate.isAuthenticated,receiverNotification.delete);
 router.route('/authenticate/getNotificationsForUser/:_id')
     .get(checkAuthenticate.isAuthenticated,receiverNotification.getNotificationsForUser);
+
+//-----------------------------------------------------------------------------------------------------------------
+/*
+router.route('/users')
+    .post(userController.create)
+    .get(userController.list);
+router.route('/users/:_id')
+    .get(userController.getByUserId)
+    .put(userController.update)
+    .delete(userController.delete);
+
+router.route('/allUsers/:_id').get(userController.getUsersByRoleId);
+router.route('/allStudents').get(userController.getAllStudents);
+router.route('/allTeachers').get(userController.getAllTeachers);
+router.route('/allAdmins').get(userController.getAllAdmins);
+router.route('/allStaffs').get(userController.getAllStaffs);
+//--------------------------------course
+router.route('/courses').get(courseController.list);
+router.route('/courses').post(courseController.create)
+
+router.route('/courses/:_id')
+    .put(courseController.update)
+    .delete(courseController.delete);
+router.route('/getCoursesForTeacher/:_id').get(courseController.getCoursesForTeacher);
+router.route('/getCoursesForStudent/:_id').get(courseController.getCoursesForStudent);
+//-------------------------------eventnotification
+router.route('/events')
+    .post(eventNotificationController.create)
+    .get(eventNotificationController.list);
+router.route('/events/:_id')
+    .put(eventNotificationController.update)
+    .delete(eventNotificationController.delete);
+//-----------------------------------receiverNotification
+router.route('/receiverEventList')
+    .get(receiverNotification.list);
+router.route('/receiverEventList/:_id')
+    .delete(receiverNotification.delete);
+router.route('/getNotificationsForUser/:_id')
+    .get(receiverNotification.getNotificationsForUser);*/
 router.route('/categories').get(categoryController.list)
     .post(categoryController.create);
+router.route('/categories/getCategoriesByCourseId/:_id').get(categoryController.getCategoriesByCourseId);
 router.route('/categories/:_id').put(categoryController.update)
     .delete(categoryController.delete);
 router.route('/subcategories').get(subCategoryController.list)
     .post(subCategoryController.create);
+router.route('/subcategories/getSubCategoriesByCategoryId/:_id').get(subCategoryController.getSubCategoriesByCategoryId)
 router.route('/subcategories/:_id').put(subCategoryController.update)
     .delete(subCategoryController.delete);
 
