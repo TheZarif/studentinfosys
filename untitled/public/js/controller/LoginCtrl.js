@@ -6,22 +6,21 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toast
     $scope.email = "";
     $scope.password = "";
     $scope.rememberMe = false;
-    var url = 'http://localhost:3000/api/';
 
     $scope.submit = function () {
         if($scope.validate()){
             UserAuthFactory.login($scope.email, $scope.password)
                 .success(function (data) {
                     AuthenticationFactory.isLogged = true;
-                    AuthenticationFactory.user = data.user.email;
-                    AuthenticationFactory.userRole = data.user.roleId;
+                    AuthenticationFactory.user = data.user;
 
+                    //For retrieving from storage if page refreshes
                     $window.sessionStorage.token = data.token;
-                    $window.sessionStorage.user = data.user.email; // to fetch the user details on refresh
-                    $window.sessionStorage.userRole = data.user.roleId; // to fetch the user details on refresh
+                    $window.sessionStorage.email = data.user.email;
+                    $window.sessionStorage.roleId = data.user.roleId;
+                    $window.sessionStorage.userName = data.user.userName;
+                    $window.sessionStorage.userId = data.user.userId;
 
-                    $rootScope.user = data.user;
-                    localStorage.setItem('userObject', JSON.stringify($rootScope.user));
                     toastr.success('Logged in!', 'Success!');
                     $state.go('dashboard')
                 })
@@ -29,8 +28,6 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toast
                     toastr.error("Invalid Credentials");
                 })
             ;
-
-
         }
         else{
             toastr.warning("Fields empty", "")

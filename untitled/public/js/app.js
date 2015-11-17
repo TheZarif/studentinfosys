@@ -14,29 +14,36 @@ var app = angular.module("app",[
 
 app.run(function ($rootScope, $window, $location, AuthenticationFactory) {
 
-    AuthenticationFactory.check();
+    $rootScope.baseUrl = "http://localhost:3000/api/authenticate/";
+
+    var offlineInitUser = function () {
+        AuthenticationFactory.isLogged = true;
+        AuthenticationFactory.user = {
+            userName : "Zarif Test",
+            email : "Zarif@test.com",
+            roleId : "Admin",
+            userId : "DefaultDummy123"
+        }
+    };
+
+    offlineInitUser(); //For testing purpose
+    //AuthenticationFactory.check();
     $rootScope.$on("$stateChangeStart", function(event, nextRoute) {
         if ((nextRoute.access && nextRoute.access.requiredLogin) && !AuthenticationFactory.isLogged) {
             $location.path("/login");
         } else {
             // check if user object exists else fetch it. This is incase of a page refresh
-            if (!AuthenticationFactory.user) AuthenticationFactory.user = $window.sessionStorage.user;
-            if (!AuthenticationFactory.userRole) AuthenticationFactory.userRole = $window.sessionStorage.userRole;
+            if (!AuthenticationFactory.user) {
+                AuthenticationFactory.user = {
+                    userName    : $window.sessionStorage.userName,
+                    userId      : $window.sessionStorage.userId,
+                    roleId      : $window.sessionStorage.roleId,
+                    email       : $window.sessionStorage.email
+                }
+            }
         }
     });
-
-
-    $rootScope.baseUrl = "http://localhost:3000/api/authenticate/";
-    $rootScope.user = JSON.parse(localStorage.getItem('userObject'));
-    //$rootScope.user = {
-    //    userId: "BSSE0430",
-    //    userName: "Zarif",
-    //    roleId: "Staffs",
-    //    email: "Zarif@mg.com"
-    //}
-    console.log("Local storage User Object:");
-    console.log($rootScope.user);
-})
+});
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider
