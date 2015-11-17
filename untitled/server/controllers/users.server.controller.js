@@ -148,3 +148,11 @@ exports.getAllStaffs = function(req, res) {
         res.json(users);
     });
 }
+exports.getAllTeachersName = function(req, res) {
+    User.find({ roleId: "Teacher" },{ userName : 1},function(err, teachersName) {
+        if (err){console.log(err);
+            res.send(err);}
+    else{console.log(teachersName);
+        res.json(teachersName);}
+    });
+}

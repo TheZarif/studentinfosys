@@ -20,6 +20,7 @@ var mongoose = require('mongoose'),
  */
 var MarkSchema = new Schema({
     // the property name
+    studentName : String,
     studentRoll:  String,
     mark : Number
 

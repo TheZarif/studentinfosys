@@ -23,6 +23,7 @@ exports.create = function(req, res) {
     category.date = req.body.date;
     category.hasSubCategory = req.body.hasSubCategory;
     category.courseId = req.body.courseId;
+    category.marksOutOf = req.body.marksOutOf;
     for(var i=0;i<req.body.listOfMark.length;i++){
    category.listOfMark.push(req.body.listOfMark[i]);
         console.log(req.body.listOfMark[i]);
@@ -40,35 +41,6 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
 
     // use our bear model to find the bear we want
-  /*  Category.findById(req.params._id, function(err, category) {
-
-        if (err)
-            res.send(err);
-
-
-        category.name = req.body.name;  // set the bears name (comes from the request)
-        category.description = req.body.description;
-        category.weight = req.body.weight;
-        category.isSelected = req.body.isSelected;
-        category.date = req.body.date;
-        category.hasSubCategory = req.body.hasSubCategory;
-        category.courseId = req.body.courseId;
-       // while(category.listOfMark.length){category.listOfMark.pop();}
-      category.listOfMark[0].studentRoll = req.body.listOfMark[0].studentRoll;
-        category.listOfMark[0].mark = req.body.listOfMark[0].mark;
-      //  console.log( category.listOfMark[0]);
-       // res.json("No problem");
-        // update the bears info
-        // save the bear
-        category.save(function(err) {
-            if (err)
-                res.send(err);
-
-            res.json(category);
-        });
-    });
-
-  */
     Category.update(
         {_id: req.params._id},
         {'$set': {
@@ -79,7 +51,8 @@ exports.update = function(req, res) {
             'isSelected' : req.body.isSelected,
             'date' : req.body.date,
             'hasSubCategory':req.body.hasSubCategory,
-            'courseId' : req.body.courseId
+            'courseId' : req.body.courseId,
+            'marksOutOf' : req.body.marksOutOf
         }},
         function(err, numAffected) {
             res.json(numAffected);
@@ -115,5 +88,13 @@ exports.getCategoriesByCourseId = function(req, res) {
             res.send(err);
 
         res.json(categories);
+    });
+}
+exports.getAbc = function(courseId) {
+    Category.find({ courseId: courseId },function(err, categories) {
+        if (err)
+            return err;
+
+       else {console.log(categories);return categories;}
     });
 }
