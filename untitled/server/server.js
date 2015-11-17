@@ -43,6 +43,8 @@ var sessionController = require('./controllers/session.server.controller');
 var courseController = require('./controllers/courses.server.controller');
 var eventNotificationController = require('./controllers/eventNotifications.server.controller');
 var receiverNotification     = require('./controllers/receiverNotification.controller.js');
+var categoryController     = require('./controllers/categories.server.controller.js');
+var subCategoryController     = require('./controllers/subCategories.server.controller.js');
 var authorizationController = require('./authentication/auth');
 
 var checkAuthenticate = require('./middleWares/validateRequests');
@@ -105,6 +107,14 @@ router.route('/authenticate/receiverEventList/:_id')
     .delete(checkAuthenticate.isAuthenticated,receiverNotification.delete);
 router.route('/authenticate/getNotificationsForUser/:_id')
     .get(checkAuthenticate.isAuthenticated,receiverNotification.getNotificationsForUser);
+router.route('/categories').get(categoryController.list)
+    .post(categoryController.create);
+router.route('/categories/:_id').put(categoryController.update)
+    .delete(categoryController.delete);
+router.route('/subcategories').get(subCategoryController.list)
+    .post(subCategoryController.create);
+router.route('/subcategories/:_id').put(subCategoryController.update)
+    .delete(subCategoryController.delete);
 
 /*
  * Routes that can be accessed by any one

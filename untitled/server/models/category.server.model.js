@@ -11,7 +11,7 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-
+var listOfMark = require('./mark.server.model.js').schema;
 /**
  * Category Schema
  */
@@ -23,7 +23,8 @@ var CategorySchema = new Schema({
     isSelected : Boolean,
     date : Date,
     hasSubCategory : Boolean,
-    courseId : String
+    courseId : String,
+    listOfMark : [listOfMark]
 
 });
 

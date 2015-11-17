@@ -14,6 +14,7 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+var listOfMark = require('./mark.server.model.js').schema;
 
 /**
  * Category Schema
@@ -25,9 +26,10 @@ var SubCategorySchema = new Schema({
     isSelected : Boolean,
     date : Date,
     categoryId : String,
-    marksOutOf : Number
+    marksOutOf : Number,
+    listOfMark : [listOfMark]
 });
 
 // Expose the model to other objects (similar to a 'public' setter).
-module.exports = mongoose.model('SubCategory', CategorySchema);
+module.exports = mongoose.model('SubCategory', SubCategorySchema);
 

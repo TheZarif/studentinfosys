@@ -1,8 +1,8 @@
 /**
- * Created by User on 13-Nov-15.
+ * Created by User on 16-Nov-15.
  */
 /**
- * Created by User on 13-Nov-15.
+ * Created by User on 16-Nov-15.
  */
 /**
  * Created by User on 03-Nov-15.
@@ -14,17 +14,17 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
+
 /**
  * Category Schema
  */
-var FileSchema = new Schema({
-// the property name
-    name : String,
-    size : Number,
-    location : String,
-    description : String
+var MarkSchema = new Schema({
+    // the property name
+    studentRoll:  String,
+    mark : Number
+
 });
 
 // Expose the model to other objects (similar to a 'public' setter).
-module.exports = mongoose.model('File', FileSchema);
+module.exports = mongoose.model('Mark', MarkSchema);
 
