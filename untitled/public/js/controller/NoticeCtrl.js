@@ -2,13 +2,14 @@
  * Created by Zarif on 08/11/2015.
  */
 
-ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toastr, AuthorizationFactory) {
+ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, NoticeService, toastr, AuthorizationFactory, AuthenticationFactory) {
     //if(!$rootScope.user) $state.go('login')
 
-    var userId = $rootScope.user.userId;
-    $scope.roleType = $rootScope.user.roleType;
-    var baseUrl = $rootScope.baseUrl;
+    var userId = AuthenticationFactory.user.userId;
+    $scope.roleType = AuthenticationFactory.user.roleId;
+
     $scope.authorizer = AuthorizationFactory;
+
     $scope.event = {};
 
     var viewCreateNotice = false;
@@ -20,81 +21,42 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, $http, toas
     };
 
     $scope.createNotice = function () {
-
-        if(!validate()) {
-            toastr.warning('You must enter all fields', 'Error');
-            return;
-        }
-
-        $http.post(baseUrl + "events", $scope.event)
-            .success(function () {
-                toastr.success('Notice sent!', 'Success!');
+        NoticeService.createNotice($scope.event,
+            function () {
                 $scope.event = {};
-                console.log('Course added');
-            })
-            .error(function (res, status) {
-                if(status == 401) {
-                    toastr.error('You are not authorized to do that', 'Sorry');
-                }
-                else{
-                    toastr.error('Could not add event', 'Error');
-                }
-            })
+            });
     };
 
     $scope.getEvents = function () {
-        $http.get(baseUrl + "getNotificationsForUser/" + userId)
-            .success(function (notifications) {
-                console.log('notifications retrieved for user: '+ userId);
+        NoticeService.getEvents(userId,
+            function (events) {
                 $scope.events = events;
-            })
-            .error(function (res, status) {
-                if(status == 401) {
-                    toastr.error('You are not authorized to do that', 'Error');
-                    //$state.go();
-                }
-                else{
-                    toastr.error('Could not add course', 'Error');
-                }
-            })
+            });
     };
 
     $scope.deleteNotice = function (event) {
-        remove($scope.events, event);
-
-        $http.delete(baseUrl + "events/" + event._id)
-            .success(function () {
-                remove(events, event);
-            })
-            .error(function (res, status) {
-                if(status == 401) {
-                    toastr.error('You are not authorized to do that', 'Error');
-                    //$state.go();
-                }
-                else{
-                    toastr.error('Could not delete course', 'Error');
-                }
-            })
+        NoticeService.deleteNotice(event, function () {
+            remove($scope.events, event)
+        });
     };
 
-    $scope.events = [
-        {
-            subject: "Oooh",
-            body: "Hello",
-            sender: "Abdus"
-        },
-        {
-            subject: "Oh",
-            body: "Hi",
-            sender: "Abdus"
-        }
-    ]
 
-
-
-    function validate(){
-        return (!!$scope.event && ($scope.event != {}) && !!$scope.event.subject  &&  !!$scope.event.description)
-    }
+    populateOfflineEvents = function () {
+        $scope.events = [
+            {
+                subject: "Oooh",
+                body: "Hello",
+                sender: "Abdus"
+            },
+            {
+                subject: "Oh",
+                body: "Hi",
+                sender: "Abdus"
+            }
+        ];
+    };
+    populateOfflineEvents();
+    $scope.getEvents();
 
     function remove(events, event){
         var index = events.indexOf(event);
