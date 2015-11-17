@@ -80,3 +80,11 @@ exports.list = function(req, res) {
         res.json(subCategories);
     });
 }
+exports.getSubCategoriesByCategoryId = function(req, res) {
+    SubCategory.find({ categoryId: req.params._id },function(err, subCategories) {
+        if (err)
+            res.send(err);
+
+        res.json(subCategories);
+    });
+}

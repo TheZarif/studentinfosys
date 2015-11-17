@@ -109,3 +109,11 @@ exports.list = function(req, res) {
         res.json(categories);
     });
 }
+exports.getCategoriesByCourseId = function(req, res) {
+    Category.find({ courseId: req.params._id },function(err, categories) {
+        if (err)
+            res.send(err);
+
+        res.json(categories);
+    });
+}
