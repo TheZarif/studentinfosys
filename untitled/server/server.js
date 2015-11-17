@@ -46,7 +46,7 @@ var receiverNotification     = require('./controllers/receiverNotification.contr
 var categoryController     = require('./controllers/categories.server.controller.js');
 var subCategoryController     = require('./controllers/subCategories.server.controller.js');
 var calculatedMarkController     = require('./controllers/calculatedMark.server.controller.js');
-
+var markCalculationController = require('./controllers/markCalculation.server.controller.js');
 var authorizationController = require('./authentication/auth');
 
 var checkAuthenticate = require('./middleWares/validateRequests');
@@ -62,7 +62,7 @@ router.route('/roles/:_id')
     .put(roleController.update)
         .delete(roleController.delete);
 //-------------------------------user
-
+/*
 router.route('/authenticate/users')
     .post(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.create)
     .get(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.list);
@@ -109,10 +109,10 @@ router.route('/authenticate/receiverEventList')
 router.route('/authenticate/receiverEventList/:_id')
     .delete(checkAuthenticate.isAuthenticated,receiverNotification.delete);
 router.route('/authenticate/getNotificationsForUser/:_id')
-    .get(checkAuthenticate.isAuthenticated,receiverNotification.getNotificationsForUser);
+    .get(checkAuthenticate.isAuthenticated,receiverNotification.getNotificationsForUser);*/
 
 //-----------------------------------------------------------------------------------------------------------------
-/*
+
 router.route('/users')
     .post(userController.create)
     .get(userController.list);
@@ -150,7 +150,7 @@ router.route('/receiverEventList/:_id')
 router.route('/getNotificationsForUser/:_id')
     .get(receiverNotification.getNotificationsForUser);
 
-*/
+
 router.route('/categories').get(categoryController.list)
     .post(categoryController.create);
 router.route('/categories/getCategoriesByCourseId/:_id').get(categoryController.getCategoriesByCourseId);
@@ -164,7 +164,7 @@ router.route('/subcategories/:_id').put(subCategoryController.update)
 router.route('/getAllTeachersName').get(userController.getAllTeachersName);
 router.route('/getStudentCountByCourseId/:_id').get(courseController.getStudentCountByCourseId);
 
-router.route('/SaveCalculatedMarks/:_id').get(courseController.SaveCalculatedMarks);
+router.route('/SaveCalculatedMarks/:_id').get(markCalculationController.SaveCalculatedMarks);
 
 router.route('/marks').get(calculatedMarkController.list);
 router.route('/marks/:_id').delete(calculatedMarkController.delete);
