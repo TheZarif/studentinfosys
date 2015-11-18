@@ -3,23 +3,18 @@
  */
 
 ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toastr, CourseService) {
-    //if(!$rootScope.user) $state.go('login')
+
     var userId;
     if ($rootScope.user)    userId = $rootScope.user.userId || "";
     else                    userId = "";
     var baseUrl = $rootScope.baseUrl;
 
     var viewCreateCourse = false;
-    $scope.viewIfCreateCourse = function () {
-        return viewCreateCourse;
-    };
-    $scope.toggleViewCreateCourse = function () {
-        if(viewCreateCourse)       viewCreateCourse = false;
-        else                       viewCreateCourse = true;
-    };
+    $scope.viewIfCreateCourse = function () {return viewCreateCourse;};
+    $scope.toggleViewCreateCourse = function () {viewCreateCourse = !viewCreateCourse;};
 
     $scope.course = {};
-    $scope.courses = []
+    $scope.courses = [];
 
     $scope.createCourse = function () {
         CourseService.createCourse($scope.course, function () {
@@ -50,11 +45,11 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
                     //$state.go();
                 }
                 else {
-                    toastr.error('Could not add course', 'Error');
+                    toastr.error('Could not retrieve teachers', 'Error');
                 }
             })
     };
-    //$scope.getTeachers();
+    $scope.getTeachers();
     $scope.getCourses();
     $scope.teachers= [
         "Rayhan",

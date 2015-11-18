@@ -1,5 +1,5 @@
-<div ng-repeat="subCategory in subCategories" class="col-md-12 panel panel-default">
-    <div ng-click="subCategory.show = !subCategory.show" class=" panel-heading">{{subCategory.name}} V </div>
+<div class="col-md-12"><div ng-repeat="subCategory in subCategories" class="panel panel-default">
+    <div ng-click="subCategory.show = !subCategory.show" class="panel-heading">{{subCategory.name}} V </div>
     <div ng-show="subCategory.show" class=" panel-body">
         <table class="table table-bordered table-hover table-condensed">
             <tr style="font-weight: bold; white-space: nowrap">
@@ -40,4 +40,4 @@
         </table>
     </div>
 
-</div>
+</div></div>

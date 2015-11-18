@@ -7,6 +7,11 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
 
     var userId = AuthenticationFactory.user.userId;
 
+    $scope.addCategory = function () {
+        $scope.categories.push({})
+        $scope.validationError = "All fields must be entered";
+    }
+
     $scope.selectCourse = function (course) {
         $scope.selectedCourse = course;
         getCategories();
@@ -18,7 +23,7 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
     }
 
     $scope.saveWeight = function () {
-        if($scope.validateWeight()){
+        if($scope.validateCategories()){
             console.log('Saved');
         }
     };
@@ -92,7 +97,7 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
                 studentRoll : "BSSE0431",
                 mark : 20
             }
-        ]
+        ];
 
         $scope.subCategories = [
             {
@@ -108,23 +113,26 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
                 date : "2014/12/29",
                 marksOutOf : 20,
                 listOfMark : marks
-            },
+            }
         ];
-        $scope.selectedCourse = $scope.courses[1];
+        //$scope.selectedCourse = $scope.courses[1];
     }
     function init() {
         CourseService.getCoursesForTeacher(userId, function (courses) {
             $scope.courses = courses;
         });
-        getCategories();
     }
 
     offlineInit();
     init();
 
-    $scope.validateWeight = function () {
+   $scope.validateCategories = function () {
         var sum = 0;
         for(var i=0; i<$scope.categories.length;i++){
+            if(!$scope.categories[i].name || !$scope.categories[i].weight){
+                $scope.validationError = "All fields must be entered";
+                return false;
+            }
             sum += $scope.categories[i].weight;
         }
         if(sum != 100){
@@ -135,7 +143,6 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
             $scope.validationError = "";
             return true;
         }
-
     };
 
     var validateSubCategory = function () {

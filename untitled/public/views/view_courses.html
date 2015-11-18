@@ -1,3 +1,15 @@
-<ul ng-repeat="course in courses">
-    <li ng-click="selectCourse(course)">{{course.courseName}}</li>
-</ul>
+<div class="input-group btn-group-justified">
+    <span class="input-group-addon large" id="basic-addon1" style="width: 30%">Select Course:</span>
+
+    <div class="btn-group" style="width: 70%">
+        <button type="button" class="btn btn-primary dropdown-toggle large "  data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+            {{selectedCourse.courseName}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li ng-repeat="course in courses"><a href="" class="large" ng-click="selectCourse(course)">
+                {{course.courseName + " (" + course.courseCode + ")"}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

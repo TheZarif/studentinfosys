@@ -6,7 +6,7 @@ app.service('NoticeService', function ($http, toastr, $rootScope) {
     var baseUrl = $rootScope.baseUrl;
 
     this.createNotice = function (event, successFunc, errFunc) {
-        if(!validate()) {
+        if(!validate(event)) {
             toastr.warning('You must enter all fields', 'Error');
             return;
         }
@@ -60,8 +60,8 @@ app.service('NoticeService', function ($http, toastr, $rootScope) {
             })
     };
 
-    function validate(){
-        return (!!$scope.event && ($scope.event != {}) && !!$scope.event.subject  &&  !!$scope.event.description)
+    function validate(event){
+        return (!!event && (event != {}) && !!event.subject  &&  !!event.description)
     }
 
 

@@ -1,25 +1,50 @@
 <div ng-controller="TeacherCtrl">
     <div view-courses-directive=""></div>
-    <div class="col-md-12">
-        <h3>{{selectedCourse.courseName}}</h3>
+    <div class="col-md-12" ng-if="selectedCourse">
+        <!--<h3>{{selectedCourse.courseName}}</h3>--><br>
 
 
-        <div class="col-md-8 panel panel-default">
-            <h4>Categories</h4>
-            <ul ng-repeat="category in categories">
-                <li>
-                    <span style="width: 120px" ng-click="selectCategory(category)">{{category.name}}</span>
-                    <input type="number" style="width: 40px" ng-model="category.weight" ng-change="validateWeight()">
-                </li>
-            </ul>
-            <span class="validation-error">{{validationError}}</span>
+        <div class="col-md-8">
 
-            <div class="btn btn-primary" ng-click="saveWeight()">Save</div>
+            <div class="panel panel-default" id="marks-distribution">
+                <div class="panel-heading"><h3 class="panel-title">Categories</h3></div>
+                <div class="panel-body">
+                    <label>Mark distribution for categories (% weight)</label>
+
+                    <div class="input-group padding-small container-fluid" ng-repeat="category in categories">
+                        <a class="input-group-addon" editable-text="category.name" onaftersave="validateCategories()" style="width: 80%" id="basic-addon3">
+                            {{category.name || "click to enter name"}}</a>
+                        <input class="text-right" type="number" ng-model="category.weight" ng-change="validateCategories()">
+                        <span class="input-group-addon">%</span>
+                    </div>
+
+                    <div class="btn btn-primary padding-small" ng-click="addCategory()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Add category
+                    </div>
+
+                    <div class="padding-small">
+                        <span class="btn btn-success " ng-click="saveWeight()" ng-disabled="validationError">
+                            <span class="glyphicon glyphicon-save"></span> Save</span>
+                        <span class="validation-error">{{validationError}}</span>
+                        <span class="glyphicon glyphicon-ok " ng-hide="validationError"></span>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
         <div class="col-md-4 panel panel-default">
             Other Options
         </div>
-        <ng-include src="'views/category_view.html'"></ng-include>
 
+        <div class="col-md-12">
+            <ng-include src="'views/category_select.html'"></ng-include>
+
+            <div ng-show="selectedCategory">
+                <ng-include src="'views/category_info.html'"></ng-include>
+                <ng-include src="'views/category_view.html'"></ng-include>
+            </div>
+        </div>
     </div>
 </div>

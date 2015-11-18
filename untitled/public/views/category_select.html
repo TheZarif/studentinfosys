@@ -1,0 +1,12 @@
+<div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Select Category:</span>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+            {{selectedCategory.name}} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li ng-repeat="category in categories"><a href="" ng-click="selectCategory(category)">{{category.name}}</a></li>
+        </ul>
+    </div>
+</div>
