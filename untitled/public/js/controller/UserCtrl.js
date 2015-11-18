@@ -2,14 +2,14 @@
  * Created by Zarif on 06/11/2015.
  */
 
-ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr, AuthorizationFactory, AuthenticationFactory) {
+ctrls.controller('UserCtrl', function ($scope, $rootScope, $state, $http, toastr, AuthorizationFactory) {
     //if(!$rootScope.user) $state.go('login')
 
     var baseUrl = $rootScope.baseUrl;
-    var userId = AuthenticationFactory.user.userId;
+    var userId = $rootScope.user.userId;
     var defaultSelected = 'Students';
 
-    $scope.roleType = AuthenticationFactory.user.roleId;
+    $scope.roleType = $rootScope.user.roleId;
     $scope.authorizer = AuthorizationFactory.isAuthorized;
     $scope.selectedItem = defaultSelected;
     $scope.semesters = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
