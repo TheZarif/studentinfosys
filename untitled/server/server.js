@@ -165,9 +165,11 @@ router.route('/getAllTeachersName').get(userController.getAllTeachersName);
 router.route('/getStudentCountByCourseId/:_id').get(courseController.getStudentCountByCourseId);
 
 router.route('/SaveCalculatedMarks/:_id').get(markCalculationController.SaveCalculatedMarks);
+router.route('/getIt/:_id').get(markCalculationController.getIt);
 
 router.route('/marks').get(calculatedMarkController.list);
 router.route('/marks/:_id').delete(calculatedMarkController.delete);
+router.route('/marks/:_id').get(calculatedMarkController.getByCourseId);
 /*
  * Routes that can be accessed by any one
  */
