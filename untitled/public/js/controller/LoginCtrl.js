@@ -7,6 +7,9 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toast
     $scope.password = "";
     $scope.rememberMe = false;
 
+    if(AuthenticationFactory.isLogged == true)  $state.go('dashboard');
+
+
     $scope.submit = function () {
         if($scope.validate()){
             UserAuthFactory.login($scope.email, $scope.password)

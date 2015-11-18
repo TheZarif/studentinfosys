@@ -11,6 +11,7 @@ ctrls.controller('NavCtrl', function ($scope, $state, UserAuthFactory, Authentic
 
     $scope.logout = function () {
         UserAuthFactory.logout();
+        $scope.isLoggedIn = false;
         $state.go('login');
     }
 });

@@ -21,7 +21,7 @@ app.run(function ($rootScope, $window, $location, AuthenticationFactory) {
         AuthenticationFactory.user = {
             userName : "Zarif Test",
             email : "Zarif@test.com",
-            roleId : "Admin",
+            roleId : "Teacher",
             userId : "DefaultDummy123"
         }
     };
