@@ -31,3 +31,11 @@ exports.delete = function(req, res) {
         res.json({ message: 'Successfully User deleted' });
     });
 }
+exports.getByCourseId = function(req, res) {
+    CalculateMark.findOne({courseId:req.params._id},function(err, marks) {
+        if (err)
+            res.send(err);
+
+        res.json(marks);
+    });
+}

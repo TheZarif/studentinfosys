@@ -2,16 +2,25 @@
  * Created by Zarif on 06/11/2015.
  */
 
-'use strict';
+ctrls.controller('NavCtrl', function ($scope, $rootScope, $http, $state, UserAuthFactory) {
 
-ctrls.controller('NavCtrl', function ($scope, $state, UserAuthFactory, AuthenticationFactory) {
+    var url = $rootScope.baseUrl;
+    $scope.user = $rootScope.user;
 
-    $scope.user = AuthenticationFactory.user;
-    $scope.isLoggedIn = AuthenticationFactory.isLogged;
+
+    $scope.login = function () {
+        window.alert($scope.username )
+    }
 
     $scope.logout = function () {
         UserAuthFactory.logout();
-        $scope.isLoggedIn = false;
+        //$http.get(url + "logout").success(function (data, status) {
+        //    window.alert("Logged out successfully");
+        //    window.localStorage.clear();
+        //    $rootScope.user = $scope.user = null;
+        //    $state.go('login');
+        //})
         $state.go('login');
     }
-});
+
+})

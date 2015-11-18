@@ -48,7 +48,7 @@ app.factory('DashboardFactory', [ function (){
     var teacherList = [
         {
             label: "Courses",
-            link: "teacher"
+            link: "courses"
         },
         {
             label: "Notification",

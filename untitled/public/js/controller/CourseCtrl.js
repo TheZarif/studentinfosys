@@ -2,7 +2,7 @@
  * Created by Zarif on 08/11/2015.
  */
 
-ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toastr, CourseService) {
+ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toastr) {
     //if(!$rootScope.user) $state.go('login')
     var userId;
     if ($rootScope.user)    userId = $rootScope.user.userId || "";
@@ -22,20 +22,64 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
     $scope.courses = []
 
     $scope.createCourse = function () {
-        CourseService.createCourse($scope.course, function () {
-            $scope.course = {};
-            $scope.courses.push(course);
-        });
+        if (!$scope.validate()) {
+            toastr.warning('You must enter all fields', 'Oops!');
+            return;
+        }
+
+        $http.post(baseUrl + "courses", $scope.course)
+            .success(function (course) {
+                toastr.success('Course added!', 'Success!');
+                $scope.course = {};
+                $scope.courses.push(course);
+                console.log('Course added');
+            })
+            .error(function (res, status) {
+                if (status == 401) {
+                    toastr.error('You are not authorized to do that', 'Error');
+                }
+                else {
+                    toastr.error('Could not add course', 'Error');
+                }
+            })
     };
 
     $scope.getCourses = function () {
-        CourseService.getCourses(function (courses) {
-            $scope.courses = courses;
-        });
+        $http.get(baseUrl + "courses")
+            .success(function (courses) {
+                console.log('Courses retrieved');
+                $scope.courses = courses;
+            })
+            .error(function (res, status) {
+                if (status == 401) {
+                    toastr.error('You are not authorized to do that', 'Error');
+                    //$state.go();
+                }
+                else {
+                    toastr.error('Could not add course', 'Error');
+                }
+            })
+    };
+
+    $scope.validate = function () {
+        return (!!$scope.course.courseName) && (!!$scope.course.courseCode) && (!!$scope.course.credit);
     };
 
     $scope.updateCourse = function (course) {
-        CourseService.updateCourse(course);
+            $http.put(baseUrl + "courses/"+ course._id, course)
+                .success(function (data) {
+                    toastr.success('Course updated');
+                })
+                .error(function (res, status) {
+                    if (status == 401) {
+                        toastr.error('You are not authorized to do that', 'Error');
+                        //$state.go();
+                    }
+                    else {
+                        toastr.error('Could not update course', 'Error');
+                    }
+                })
+
     };
 
     $scope.getTeachers = function(){
@@ -65,15 +109,15 @@ ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toas
     $scope.courses = [
         {
             courseName: "Network Security",
-            courseCode: 'CSE 802',
-            credit: '3',
+            courseId: 'CSE 802',
+            credits: '3',
             teacherAssigned: 'Raihan',
             semester: '8th'
         },
         {
             courseName: "Network Security",
-            courseCode: 'CSE 802',
-            credit: '3',
+            courseId: 'CSE 802',
+            credits: '3',
             teacherAssigned: 'Raihan',
             semester: '8th'
         }

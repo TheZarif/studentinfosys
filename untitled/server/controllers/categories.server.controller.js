@@ -22,10 +22,14 @@ exports.create = function(req, res) {
     category.isSelected = req.body.isSelected;
     category.date = req.body.date;
     category.hasSubCategory = req.body.hasSubCategory;
+    if(category.hasSubCategory==true){
+        category.marksOutOf = 0;
+    }
+    else{ category.marksOutOf = req.body.marksOutOf; }
     category.courseId = req.body.courseId;
-    category.marksOutOf = req.body.marksOutOf;
+
     for(var i=0;i<req.body.listOfMark.length;i++){
-   category.listOfMark.push(req.body.listOfMark[i]);
+        category.listOfMark.push(req.body.listOfMark[i]);
         console.log(req.body.listOfMark[i]);
     }
     // save the bear and check for errors
@@ -55,6 +59,7 @@ exports.update = function(req, res) {
             'marksOutOf' : req.body.marksOutOf
         }},
         function(err, numAffected) {
+           // console.log("mairala");
             res.json(numAffected);
         }
     );
@@ -95,6 +100,6 @@ exports.getAbc = function(courseId) {
         if (err)
             return err;
 
-       else {console.log(categories);return categories;}
+        else {console.log(categories);return categories;}
     });
 }
