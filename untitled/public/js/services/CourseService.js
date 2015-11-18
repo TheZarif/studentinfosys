@@ -56,6 +56,14 @@ app.service('CourseService', function ($http, toastr, $rootScope) {
 
     };
 
+    this.getCoursesForTeacher = function (userId, courses) {
+        return [];
+    };
+
+    this.getCoursesForStudent = function (userId, courses) {
+
+    };
+
     this.validate = function (course) {
         return (!!course.courseName) && (!!course.courseCode) && (!!course.credit);
     };

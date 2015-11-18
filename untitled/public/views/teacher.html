@@ -1,0 +1,25 @@
+<div ng-controller="TeacherCtrl">
+    <div view-courses-directive=""></div>
+    <div class="col-md-12">
+        <h3>{{selectedCourse.courseName}}</h3>
+
+
+        <div class="col-md-8 panel panel-default">
+            <h4>Categories</h4>
+            <ul ng-repeat="category in categories">
+                <li>
+                    <span style="width: 120px" ng-click="selectCategory(category)">{{category.name}}</span>
+                    <input type="number" style="width: 40px" ng-model="category.weight" ng-change="validateWeight()">
+                </li>
+            </ul>
+            <span class="validation-error">{{validationError}}</span>
+
+            <div class="btn btn-primary" ng-click="saveWeight()">Save</div>
+        </div>
+        <div class="col-md-4 panel panel-default">
+            Other Options
+        </div>
+        <ng-include src="'views/category_view.html'"></ng-include>
+
+    </div>
+</div>
