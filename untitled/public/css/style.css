@@ -69,19 +69,19 @@
 /*{*/
     /*color: black;*/
 /*}*/
-/*.navbar-login*/
-/*{*/
-    /*width: 305px;*/
-    /*padding: 10px;*/
-    /*padding-bottom: 0px;*/
-/*}*/
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
 
-/*.navbar-login-session*/
-/*{*/
-    /*padding: 10px;*/
-    /*padding-bottom: 0px;*/
-    /*padding-top: 0px;*/
-/*}*/
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
 
 .icon-size
 {
@@ -123,4 +123,15 @@
 
 .large {
     font-size: large;
+}
+
+.panel-heading:hover {
+    background-color: #bfbfbf;
+    color: white;
+    font-style: normal;
+}
+
+.panel-heading a:hover {
+    text-decoration: none;
+    color: inherit;
 }

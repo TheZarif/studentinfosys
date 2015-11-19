@@ -9,7 +9,8 @@ var app = angular.module("app",[
     'toastr',
     'controllers',
     'xeditable',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngAnimate'
 ]);
 
 app.run(function ($rootScope, $window, $location, AuthenticationFactory) {
@@ -99,3 +100,4 @@ app.run(function(editableOptions) {
 });
 
 var ctrls = angular.module('controllers', []);
+

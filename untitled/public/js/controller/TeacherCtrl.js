@@ -3,7 +3,7 @@
  */
 
 
-ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, AuthenticationFactory, CourseService, CategoryService) {
+ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, AuthenticationFactory, CourseService, CategoryService, $timeout) {
 
     var userId = AuthenticationFactory.user.userId;
 
@@ -22,18 +22,22 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
         getSubCategories();
     }
 
-    $scope.saveWeight = function () {
-        if($scope.validateCategories()){
-            console.log('Saved');
+    $scope.updateCategory = function (category) {
+        CategoryService.updateCategory(category)
+    };
+
+    $scope.updateCategoriesForCourse = function (course) {
+        if ($scope.validateCategories()) {
+            CategoryService.updateAllCategoriesForCourse(course, $scope.categories)
         }
     };
 
     $scope.saveSubCategory = function (subCategory) {
-        if(validateSubCategory){
+        if (validateSubCategory) {
             console.log('Saved');
             CategoryService.updateSubCategory(subCategory);
         }
-    }
+    };
 
     var getCategories = function () {
         CategoryService.getCategories($scope.selectedCourse._id, function (categories) {
@@ -50,73 +54,77 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
     function offlineInit() {
         $scope.courses = [
             {
-                courseName:  "Network Security",
-                courseCode : "CSE 802",
-                credit : 3,
-                teacherAssigned : "Rayhan",
-                semester : "8th"
+                _id: "1901913",
+                courseName: "Network Security",
+                courseCode: "CSE 802",
+                credit: 3,
+                teacherAssigned: "Rayhan",
+                semester: "8th"
             },
             {
-                courseName:  "Structured Programming",
-                courseCode : "CSE 105",
-                credit : 3,
-                teacherAssigned : "Rayhan",
-                semester : "8th"
+                _id: "1922433",
+                courseName: "Structured Programming",
+                courseCode: "CSE 105",
+                credit: 3,
+                teacherAssigned: "Rayhan",
+                semester: "8th"
             }
         ];
 
         $scope.categories = [
             {
+                _id: "1915213",
                 name: "Mid terms",
-                description : "",
-                weight : 40,
-                isSelected : true,
-                date : "",
-                hasSubCategory : false,
-                courseId : "191911"
+                description: "",
+                weight: 40,
+                isSelected: true,
+                date: "",
+                hasSubCategory: false,
+                courseId: "191911"
             },
             {
+                _id: "1941324",
                 name: "Final",
-                description : "",
-                weight : 60,
-                isSelected : true,
-                date : "",
-                hasSubCategory : false,
-                courseId : "412"
+                description: "",
+                weight: 60,
+                isSelected: true,
+                date: "",
+                hasSubCategory: false,
+                courseId: "412"
             }
         ];
 
         var marks = [
             {
-                studentName : "Zarif",
-                studentRoll : "BSSE0430",
-                mark : 19
+                studentName: "Zarif",
+                studentRoll: "BSSE0430",
+                mark: 19
             },
             {
-                studentName : "Neela",
-                studentRoll : "BSSE0431",
-                mark : 20
+                studentName: "Neela",
+                studentRoll: "BSSE0431",
+                mark: 20
             }
         ];
 
         $scope.subCategories = [
             {
-                name : "Mid 1",
-                description : "Mid term 1",
-                date : "2014/11/29",
-                marksOutOf : 20,
-                listOfMark : marks
+                name: "Mid 1",
+                description: "Mid term 1",
+                marksOutOf: 20,
+                listOfMark: marks
             },
             {
-                name : "Mid 2",
-                description : "Mid term 2",
-                date : "2014/12/29",
-                marksOutOf : 20,
-                listOfMark : marks
+                name: "Mid 2",
+                description: "Mid term 2",
+                marksOutOf: 20,
+                listOfMark: marks
             }
         ];
-        //$scope.selectedCourse = $scope.courses[1];
+        $scope.selectedCourse = $scope.courses[1];
+        $scope.selectedCategory = $scope.categories[0];
     }
+
     function init() {
         CourseService.getCoursesForTeacher(userId, function (courses) {
             $scope.courses = courses;
@@ -126,20 +134,20 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
     offlineInit();
     init();
 
-   $scope.validateCategories = function () {
+    $scope.validateCategories = function () {
         var sum = 0;
-        for(var i=0; i<$scope.categories.length;i++){
-            if(!$scope.categories[i].name || !$scope.categories[i].weight){
+        for (var i = 0; i < $scope.categories.length; i++) {
+            if (!$scope.categories[i].name || !$scope.categories[i].weight) {
                 $scope.validationError = "All fields must be entered";
                 return false;
             }
             sum += $scope.categories[i].weight;
         }
-        if(sum != 100){
+        if (sum != 100) {
             $scope.validationError = "*Sum of weights must equal 100";
             return false;
         }
-        else{
+        else {
             $scope.validationError = "";
             return true;
         }
@@ -148,5 +156,33 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
     var validateSubCategory = function () {
         return true;
     }
+
+    $scope.validateMarksOutOf = function (data) {
+        if (isNaN(data)) {
+            toastr.warning("Invalid input", "Oops!");
+            return false;
+        }
+        else
+            return true
+    }
+
+    $scope.picker = {opened: false};
+
+    $scope.openPicker = function () {
+        $timeout(function () {
+            $scope.picker.opened = true;
+        });
+    };
+
+    $scope.closePicker = function () {
+        $scope.picker.opened = false;
+    };
+
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
+
+    $scope.showAddCatMarkDis = true;
 
 })

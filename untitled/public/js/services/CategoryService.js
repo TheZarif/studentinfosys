@@ -33,11 +33,11 @@ app.service('CategoryService', function ($http, $rootScope, toastr) {
     this.updateCategory = function (category, successFunc) {
         $http.put(baseUrl + "categories/" + category._id, category)
             .success(function (categories) {
-                console.log("Categories updated for course " + courseId, categories);
+                console.log("Category updated" + category._id, categories);
                 toastr.success("Updated", "Success!");
             })
             .error(function (err) {
-                console.log("Couldn't update category for course " + courseId, err);
+                console.log("Couldn't update category" + category._id, err);
                 toastr.warning("Something went wrong", "Oops!");
             })
     };
@@ -54,14 +54,14 @@ app.service('CategoryService', function ($http, $rootScope, toastr) {
             })
     };
 
-    this.updateAllCategoriesForCourse= function (course, successFunc) {
-        $http.put(baseUrl + "categories/" + course._id, category)
+    this.updateAllCategoriesForCourse= function (course, categories) {
+        $http.put(baseUrl + "categories/" + course._id, categories)
             .success(function (categories) {
-                console.log("Categories retrieved for course " + courseId, categories);
+                console.log("Categories retrieved for course " + course._id, categories);
                 toastr.success("Updated", "Success!");
             })
             .error(function (err) {
-                console.log("Couldn't update category for course " + courseId, err);
+                console.log("Couldn't update category for course " + course._id, err);
                 toastr.warning("Something went wrong", "Oops!");
             })
     };
@@ -69,11 +69,11 @@ app.service('CategoryService', function ($http, $rootScope, toastr) {
     this.delteCategory = function (category, successFunc) {
         $http.delete(baseUrl + "categories/" + category._id)
             .success(function () {
-                console.log("Category deleted for course " + courseId, category);
+                console.log("Category deleted for course " + course._id, category);
                 toastr.success("Updated", "Success!");
             })
             .error(function (err) {
-                console.log("Couldn't update category for course " + courseId, err);
+                console.log("Couldn't update category for course " + course._id, err);
                 toastr.warning("Something went wrong", "Oops!");
             })
     }

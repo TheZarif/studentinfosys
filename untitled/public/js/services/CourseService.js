@@ -56,8 +56,16 @@ app.service('CourseService', function ($http, toastr, $rootScope) {
 
     };
 
-    this.getCoursesForTeacher = function (userId, courses) {
-        return [];
+    this.getCoursesForTeacher = function (userId, successFunc) {
+        $http.get(baseUrl + "getCoursesForTeacher/" + userId)
+            .success(function (data) {
+                console.log("Courses for teacher "+ userId + "retrieved", data);
+                successFunc(data);
+            })
+            .error(function (err) {
+                console.log("err");
+                toastr.warning("Something went wrong.", "Oops!");
+            })
     };
 
     this.getCoursesForStudent = function (userId, courses) {

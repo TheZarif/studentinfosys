@@ -1,0 +1,12 @@
+<table class="table-bordered table-condensed">
+    <thead>
+    <tr ng-repeat="column in columns">
+        {{column}}
+    </tr>
+    </thead>
+    <tr ng-repeat="row in rows">
+        <td ng-repeat="column in columns">
+            {{row[column]}}
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,31 @@
+<uib-accordion class="col-md-8" close-others="oneAtATime">
+    <uib-accordion-group is-open="showAddCatMarkDis">
+        <uib-accordion-heading>
+            Add category / mark distribution <i class="pull-right glyphicon"
+                                                ng-class="{'glyphicon-chevron-down': !showAddCatMarkDis, 'glyphicon-chevron-right': showAddCatMarkDis}"></i>
+        </uib-accordion-heading>
+        <label>Mark distribution for categories (% weight)</label>
+
+        <div class="input-group padding-small container-fluid" ng-repeat="category in categories">
+            <a class="input-group-addon" editable-text="category.name" onaftersave="validateCategories()"
+               style="width: 80%" id="basic-addon31">
+                {{category.name || "click to enter name"}}</a>
+            <input class="text-right" type="number" ng-model="category.weight"
+                   ng-change="validateCategories()">
+            <span class="input-group-addon">%</span>
+        </div>
+
+        <div class="btn btn-primary padding-small" ng-click="addCategory()">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add category
+        </div>
+
+        <div class="padding-small">
+                        <span class="btn btn-success " ng-click="updateCategoriesForCourse(selectedCourse)"
+                              ng-disabled="validationError">
+                            <span class="glyphicon glyphicon-save"></span> Save</span>
+            <span class="validation-error">{{validationError}}</span>
+            <span class="glyphicon glyphicon-ok " ng-hide="validationError"></span>
+        </div>
+    </uib-accordion-group>
+</uib-accordion>

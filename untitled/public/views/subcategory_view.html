@@ -1,0 +1,79 @@
+<div class="col-md-12">
+    <div ng-repeat="subCategory in subCategories" class="panel panel-default">
+        <div ng-click="subCategory.show = !subCategory.show" class="panel-heading">{{subCategory.name}}
+            <span ng-show="!subCategory.show" class="col-md-offset-8 glyphicon glyphicon-chevron-down"></span>
+            <span ng-show="subCategory.show" class="col-md-offset-8 glyphicon glyphicon-chevron-up"></span>
+        </div>
+        <div ng-show="subCategory.show" class=" panel-body">
+
+            <div class="col-md-6 well well-small">
+                <div>Name: <span class="" editable-text="subCategory.name">{{subCategory.name}}</span></div>
+                <div>Description: <span class=""
+                                        editable-textarea="subCategory.description">{{subCategory.description}}</span>
+                </div>
+                <div>
+                    Date :
+                    <a href="#" editable-bsdate="subCategory.date"
+                       onshow="openPicker()"
+                       onhide="closePicker()"
+                       e-is-open="picker.opened"
+                       e-init-date="false"
+                       e-datepicker-popup="dd-MMMM-yyyy">
+                        {{ (subCategory.date | date:"dd/MM/yyyy") || 'add date' }}
+                    </a>
+                </div>
+                <div>
+                    Marks Total:
+                    <span class="" editable-text="subCategory.marksOutOf" onbeforesave="validateMarksOutOf($data)">{{subCategory.marksOutOf}}</span>
+                </div>
+                <br>
+
+                <div class="btn btn-success">
+                    <i class="glyphicon glyphicon-floppy-disk"></i> Save
+                </div>
+            </div>
+
+
+            <table class="table table-bordered table-hover table-condensed">
+                <tr style="font-weight: bold; white-space: nowrap">
+
+                    <!-- username header -->
+                    <td style="width:40%">Roll</td>
+
+                    <!-- status header -->
+                    <td style="width:30%">Name</td>
+
+                    <!-- mark header -->
+                    <td style="width:30%">
+                        Marks
+                        <form editable-form name="markform" onaftersave="saveSubCategory(subCategory)"
+                              ng-show="markform.$visible">
+                            <button type="submit" ng-disabled="markform.$waiting" class="btn btn-primary">
+                                save
+                            </button>
+                            <button type="button" ng-disabled="markform.$waiting" ng-click="markform.$cancel()"
+                                    class="btn btn-default">
+                                cancel
+                            </button>
+                        </form>
+                        <button class="btn btn-default" ng-show="!markform.$visible" ng-click="markform.$show()">
+                            edit
+                        </button>
+                    </td>
+                </tr>
+
+                <tr ng-repeat="mark in subCategory.listOfMark">
+                    <td>{{mark.studentRoll}}</td>
+                    <td>{{mark.studentName}}</td>
+                    <td>
+                        <!-- editable mark (select-remote) -->
+        <span editable-text="mark.mark" e-name="mark" e-form="markform">
+          {{ mark.mark }}
+        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
