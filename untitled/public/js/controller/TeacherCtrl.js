@@ -10,6 +10,11 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
     $scope.addCategory = function () {
         $scope.categories.push({})
         $scope.validationError = "All fields must be entered";
+    };
+
+    $scope.addSubCategory = function () {
+        $scope.subCategories.push({name: $scope.selectedCategory.name + " " + ($scope.subCategories.length + 1)})
+        $scope.subCategories[$scope.subCategories.length-1].open = true;
     }
 
     $scope.selectCourse = function (course) {

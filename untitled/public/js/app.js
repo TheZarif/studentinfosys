@@ -60,10 +60,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             url: '/:item'
         })
 
-        .state('test', {
-            url: '/test',
-            templateUrl: 'views/create_notice.html',
-            controller: 'NoticeCtrl'
+        .state('profile', {
+            url: '/profile',
+            templateUrl: 'views/profile_page.html',
+            controller: 'ProfileCtrl'
         })
         .state('login', {
             url: '/login',

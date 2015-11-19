@@ -31,13 +31,13 @@ app.factory('UserAuthFactory', function($window, $location, $http, Authenticatio
 
                 AuthenticationFactory.isLogged = false;
                 delete AuthenticationFactory.user;
-                delete AuthenticationFactory.userRole;
+                delete AuthenticationFactory.roleId;
                 delete AuthenticationFactory.userName;
                 delete AuthenticationFactory.userId;
 
                 delete $window.sessionStorage.token;
                 delete $window.sessionStorage.user;
-                delete $window.sessionStorage.userRole;
+                delete $window.sessionStorage.roleId;
                 delete $window.sessionStorage.userName;
                 delete $window.sessionStorage.userId;
 

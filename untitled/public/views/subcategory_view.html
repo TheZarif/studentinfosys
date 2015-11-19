@@ -1,40 +1,34 @@
 <div class="col-md-12">
-    <div ng-repeat="subCategory in subCategories" class="panel panel-default">
-        <div ng-click="subCategory.show = !subCategory.show" class="panel-heading">{{subCategory.name}}
-            <span ng-show="!subCategory.show" class="col-md-offset-8 glyphicon glyphicon-chevron-down"></span>
-            <span ng-show="subCategory.show" class="col-md-offset-8 glyphicon glyphicon-chevron-up"></span>
-        </div>
-        <div ng-show="subCategory.show" class=" panel-body">
 
-            <div class="col-md-6 well well-small">
-                <div>Name: <span class="" editable-text="subCategory.name">{{subCategory.name}}</span></div>
-                <div>Description: <span class=""
-                                        editable-textarea="subCategory.description">{{subCategory.description}}</span>
+    <uib-accordion>
+        <uib-accordion-group ng-repeat="subCategory in subCategories" is-open="subCategory.open">
+            <uib-accordion-heading>
+                {{subCategory.name}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': subCategory.open, 'glyphicon-chevron-right': !subCategory.open}"></i>
+            </uib-accordion-heading>
+
+            <div id="subcategory-info" class="col-md-6 well well-small">
+                <div>Name: <span class="" editable-text="subCategory.name">{{subCategory.name || "add"}}</span></div>
+                <div>Description: <span editable-textarea="subCategory.description">{{subCategory.description || "add"}}</span>
                 </div>
                 <div>
                     Date :
-                    <a href="#" editable-bsdate="subCategory.date"
-                       onshow="openPicker()"
-                       onhide="closePicker()"
-                       e-is-open="picker.opened"
-                       e-init-date="false"
-                       e-datepicker-popup="dd-MMMM-yyyy">
+                    <a href="#" editable-bsdate="subCategory.date" onshow="openPicker()" onhide="closePicker()"
+                       e-is-open="picker.opened" e-init-date="false"e-datepicker-popup="dd-MMMM-yyyy">
                         {{ (subCategory.date | date:"dd/MM/yyyy") || 'add date' }}
                     </a>
                 </div>
                 <div>
                     Marks Total:
-                    <span class="" editable-text="subCategory.marksOutOf" onbeforesave="validateMarksOutOf($data)">{{subCategory.marksOutOf}}</span>
+                    <span class="" editable-text="subCategory.marksOutOf" onbeforesave="validateMarksOutOf($data)">{{subCategory.marksOutOf || "add"}}</span>
                 </div>
                 <br>
 
-                <div class="btn btn-success">
+                <div class="btn btn-success" ng-click="saveSubCategory(subCategory)">
                     <i class="glyphicon glyphicon-floppy-disk"></i> Save
                 </div>
             </div>
 
-
-            <table class="table table-bordered table-hover table-condensed">
+            <table id="subcategory-marks" class="table table-bordered table-hover table-condensed">
                 <tr style="font-weight: bold; white-space: nowrap">
 
                     <!-- username header -->
@@ -73,7 +67,12 @@
                     </td>
                 </tr>
             </table>
-        </div>
+        </uib-accordion-group>
+    </uib-accordion>
 
+
+    <div class="btn btn-primary padding-small" ng-click="addSubCategory()">
+        <span class="glyphicon glyphicon-plus"></span>
+        Add subcategory
     </div>
 </div>
