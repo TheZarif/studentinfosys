@@ -159,10 +159,28 @@ exports.getAllTeachersName = function(req, res) {
     });
 }
 exports.getAllUsersForSemester = function(req,res){
-    User.find({ $and:[{currentSemester: req.params.semester},{roleId :'Student'}]},function(err,students){
+    console.log(req.params.semester);
+    User.find({currentSemester: req.params.semester},function(err,students){
         if (err){console.log(err);
             res.send(err);}
         else{console.log(students);
             res.json(students);}
+    });
+}
+
+exports.userEmailExists = function(req,res){
+    User.findOne({email: req.params.email},function(err,user){
+        if (err)res.json(err);
+         else{
+            res.json("email already exist");
+        }
+    });
+}
+exports.userNameExists = function(req,res){
+    User.findOne({userName: req.params.userName},function(err,user){
+        if (err)res.json(err);
+        else{
+            res.json("userName already exist");
+        }
     });
 }

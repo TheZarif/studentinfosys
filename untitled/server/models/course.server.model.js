@@ -22,7 +22,6 @@ var CourseSchema = new Schema({
     credit : Number,
     teacherAssigned : String,
     semester : String,
-    fileList : [FileSchema]
 
 });
 

@@ -13,11 +13,10 @@ var CalculatedMark = require('../models/calculatedMark.server.model.js');
 
 
 exports.SaveCalculatedMarks = function (req, res) {
-
-    calculateSubCategories(req);
-    res.json("calculation done");
-
+    calculateSubCategories(req, res);
+    //res.json("calculation done");
 }
+
 exports.getMarksView = function (req, res) {
     CalculatedMark.findOne({courseId: req.params._id}, function (err, row) {
         if (row == null) {
@@ -65,6 +64,7 @@ function addAllCategoryTotal(id, res) {
         }
     });
 }
+
 function updateAllCategoryTotal(id, res) {
     Course.findOne({_id: id}, function (err, course) {
         Category.find({courseId: course._id}, function (err, categories) {
@@ -100,17 +100,16 @@ function updateAllCategoryTotal(id, res) {
         });
     });
 }
-function calculateSubCategories(req) {
-    console.log(req.params._id);
+function calculateSubCategories(req, res) {
     Course.findOne({_id: req.params._id}, function (err, course) {
-        if (err) console.log(err);
+        if (err) res.status(400).send(err);
         else {
             Category.find({courseId: course._id}, function (err, categories) {
+
                 for (var j = 0; j < categories.length; j++) {
                     if (!categories[j].isAttendance) {
-                        // var c = categories[j];
-                        //  console.log("from  " + c.name);
-                        initializeCategory(categories[j]);
+
+                        initializeCategory(categories[j], doTest);
                         //doTest(categories[j]);
                     }
                     else {
@@ -127,6 +126,29 @@ function calculateSubCategories(req) {
     });
 
 }
+function initializeCategory(cat, callback) {
+    Category.findOne(
+        {_id: cat._id},
+        function (err, category) {
+            if (err) console.log(err);
+            for (var c = 0; c < category.listOfMark.length; c++) {
+                category.listOfMark[c].mark = 0;
+            }
+            Category.update({_id: cat._id},
+                {'$set': {'listOfMark': category.listOfMark}},
+                function (err, numOfRow) {
+                    if (err) console.log(err);
+                    else {
+                        console.log(numOfRow);
+                        callback(cat);
+                    }
+                });
+
+        }
+    );
+
+
+}
 function doTest(cat) {
     SubCategory.find({categoryId: cat._id}, function (err, subCategories) {
         console.log("from" + cat.name + "child" + subCategories);
@@ -134,17 +156,25 @@ function doTest(cat) {
         for (var i = 0; i < subCategories.length; i++) {
             sum = sum + subCategories[i].marksOutOf;
         }
-        console.log("dddddddddddddd" + sum);
-        updateMarksOutOf(cat._id, sum);
+        //cat.marksOutOf = sum;
 
         var s0 = subCategories[0].listOfMark;
-        for (var x = 0; x < s0.length; x++) {
-            updateMarkObtained(cat._id, s0[x].studentRoll, s0[x].mark);
-            for (var k = 1; k < subCategories.length; k++) {
-                //console.log("oooooooooos"+subCategories[k]._id+s0[x].studentRoll);
-                getMark(cat._id, subCategories[k]._id, s0[x].studentRoll);
+        for (var x = 0; x < s0.length; x++) {//updateMarkObtained(cat._id, s0[x].studentRoll, s0[x].mark);
+            for (var k = 0; k < subCategories.length; k++) {
+                cat.listOfMark[x].mark += subCategories[k].listOfMark[x].mark;
             }
         }
+
+        Category.update({_id: cat._id},
+            {'$set': {'listOfMark': cat.listOfMark,
+                    'marksOutOf' : sum}},
+            function (err, numOfRow) {
+                if (err) console.log(err);
+                else {
+                    console.log(numOfRow);
+                }
+            });
+
 
     });
 }
@@ -190,60 +220,4 @@ function updateMarksOutOf(id, updatedMark) {
         }
     );
 }
-function updateMarkObtained(catId, roll, tempMark) {
-    console.log("////////////////updatedMark Obtained" + catId + " " + roll + " " + tempMark);
-    Category.update(
-        {_id: catId, 'listOfMark.studentRoll': roll},
-        {$inc: {"listOfMark.$.mark": tempMark}},
-        function (err, numAffected) {
-            if (err) console.log(err);
-            console.log("updated alon e ..................");
-        }
-    );
 
-}
-function getMark(catId, id, roll) {
-    console.log("///////////////get amer  " + id + roll);
-    SubCategory.findOne({_id: id}, {'listOfMark.mark': 1, 'listOfMark.studentRoll': 1},
-        function (err, subMark) {
-            if (err) return err;
-            else {
-                for (var i = 0; i < subMark.listOfMark.length; i++) {
-                    if (subMark.listOfMark[i].studentRoll == roll) {
-                        console.log(subMark.listOfMark[i].mark);
-                        updateMarkObtained(catId, roll, subMark.listOfMark[i].mark);
-                        //  return subMark.listOfMark[i].mark;
-                    }
-                }
-            }
-        });
-}
-
-function initializeCategory(cat) {
-    console.log("initializing");
-    Category.findOne(
-        {_id: cat._id},
-        function (err, category) {
-            if (err) console.log(err);
-          //  console.log("initttttttttt" + id);
-            var list = [];
-            for (var c = 0; c < category.listOfMark.length; c++) {
-                category.listOfMark[c].mark = 0;
-                list.push(category.listOfMark[c]);
-                console.log(category.listOfMark[c]);
-            }
-            Category.update({_id: cat._id},
-                {'$set': {'listOfMark': list}},
-                function (err, numOfRow) {
-                    if (err) console.log(err);
-                    else {
-                        console.log(numOfRow);
-                        doTest(cat)
-                    }
-                });
-
-        }
-    );
-
-
-}

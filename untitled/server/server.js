@@ -59,6 +59,8 @@ var calculatedMarkController     = require('./controllers/calculatedMark.server.
 var markCalculationController = require('./controllers/markCalculation.server.controller.js');
 var fileController = require('./controllers/files.server.controller.js');
 var authorizationController = require('./authentication/auth');
+var okController = require('./controllers/ok.js');
+var courseFileController = require('./controllers/courseFiles.server.controller.js');
 
 var checkAuthenticate = require('./middleWares/validateRequests');
 var router = express.Router();
@@ -148,7 +150,7 @@ router.route('/courses/:_id')
 router.route('/getCoursesForTeacher/:_id').get(courseController.getCoursesForTeacher);
 router.route('/getCoursesForStudent/:_id').get(courseController.getCoursesForStudent);
 //-------------------------------eventnotification
-router.route('/events')
+router.route('/events').post(eventNotificationController.create)
     .get(eventNotificationController.list);
 router.route('/events/:_id')
     .put(eventNotificationController.update)
@@ -177,18 +179,25 @@ router.route('/subcategories/:_id').put(subCategoryController.update)
 router.route('/getAllTeachersName').get(userController.getAllTeachersName);
 router.route('/getStudentCountByCourseId/:_id').get(courseController.getStudentCountByCourseId);
 
-router.route('/SaveCalculatedMarks/:_id').get(markCalculationController.SaveCalculatedMarks);
-router.route('/getMarksView/:_id').get(markCalculationController.getMarksView);
+//router.route('/SaveCalculatedMarks/:_id').get(markCalculationController.SaveCalculatedMarks);
+//router.route('/getMarksView/:_id').get(markCalculationController.getMarksView);
+//router.route('/routeForDoTest/:_id').get(markCalculationController.getMarksView);
+router.route('/calculate/:_id').get(okController.calculate);
+router.route('/updatedummy/:_id').get(okController.update);
 
 router.route('/marks').get(calculatedMarkController.list);
 router.route('/marks/:_id').delete(calculatedMarkController.delete);
 router.route('/marks/:_id').get(calculatedMarkController.getByCourseId);
+router.route('/marks/:_id/:roll').get(calculatedMarkController.getAllMarksByUserRollByCourseId);
 
-router.route('/events').post(upload.array('uploadedFiles'),eventNotificationController.create);
+//router.route('/events').post(upload.array('uploadedFiles'),eventNotificationController.create);
 router.route('/getAllFileByNotificationId/:_id').get(eventNotificationController.getAllFileByNotificationId);
-router.route('/getFile/:_id/:fileId').get(fileController.getFile);
+router.route('/getFileOfNotification/:notificationId/:fileId').get(fileController.getFileOfNotification);
 router.route('/deleteFile/:path').get(fileController.deleteFile);
 
+
+router.route('/uploadCourseFiles/:courseId').post(upload.array('courseFiles'),courseFileController.uploadFile);
+router.route('/getFileOfCourse/:courseId/:fileId').get(courseFileController.getFileOfCourse);
 /*
  * Routes that can be accessed by any one
  */

@@ -22,26 +22,13 @@ var File = require('../models/file.server.model.js');
  * Create a Category
  */
 exports.create = function(req, res) {
-    console.log(req.files.length);
+    //console.log(req.files.length);
     var eventNotification = new EventNotification();      // create a new instance of the Bear model
-    eventNotification.creatorId = "56446693e4b0f198092495ac";
+    eventNotification.creatorId = req.body.creatorId;
     eventNotification.type = req.body.type;
     eventNotification.description = req.body.description;
     eventNotification.subject = req.body.subject;
-    eventNotification.receiverId = ["563b7d9f4a5df71c13d4300d","564ad58848ad557c0d50cc66"];
-    if(req.files.length){
-        for(var i=0;i<req.files.length;i++){
-            var file = new File();
-            file.originalName = req.files[i].originalname;
-            file.uniqueName = req.files[i].filename;
-            file.mimetype = req.files[i].mimetype;
-            file.size = req.files[i].size;
-            file.destinationFolder = req.files[i].destination;
-            var s = req.files[i].path.replace("\\","/");
-            file.destinationPath = "./".concat(s);
-            eventNotification.fileList.push(file);
-        }
-    }
+    eventNotification.receiverId = req.body.receiverId;
     eventNotification.sentDate = Date.now();
     eventNotification.eventDate = req.body.eventDate;
     // save the bear and check for errors
@@ -125,3 +112,18 @@ exports.getAllFileByNotificationId = function(req,res){
         res.json(notification.fileList);
     })
 }
+/*{
+ if(req.files.length){
+ for(var i=0;i<req.files.length;i++){
+ var file = new File();
+ file.originalName = req.files[i].originalname;
+ file.uniqueName = req.files[i].filename;
+ file.mimetype = req.files[i].mimetype;
+ file.size = req.files[i].size;
+ file.destinationFolder = req.files[i].destination;
+ var s = req.files[i].path.replace("\\","/");
+ file.destinationPath = "./".concat(s);
+ eventNotification.fileList.push(file);
+ }
+ }
+ }*/

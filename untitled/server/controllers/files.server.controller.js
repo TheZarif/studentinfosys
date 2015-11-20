@@ -18,10 +18,10 @@ var EventNotification     = require('../models/eventNotification.server.model.js
 var fs = require('fs');
 /**
  */
-exports.getFile = function(req,res){
-    console.log(req.params._id +"b vbj"+req.params.fileId);
+exports.getFileOfNotification = function(req,res){
+    console.log(req.params.notificationId +"b vbj"+req.params.fileId);
     var flag=0;
-    EventNotification.findOne({_id:req.params._id},function(err, event){
+    EventNotification.findOne({_id:req.params.notificationId},function(err, event){
         if(err) res.json(err);
         else{
             for(var i=0;i<event.fileList.length;i++){

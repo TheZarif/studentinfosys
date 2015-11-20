@@ -1,0 +1,136 @@
+/**
+ * Created by Zarif on 08/11/2015.
+ */
+
+<<<<<<< local
+ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toastr, CourseService) {
+
+    var userId;
+    if ($rootScope.user)    userId = $rootScope.user.userId || "";
+    else                    userId = "";
+=======
+ctrls.controller('CourseCtrl', function ($scope, $rootScope, $state, $http, toastr) {
+    //if(!$rootScope.user) $state.go('login')
+    var userId;
+    if ($rootScope.user)    userId = $rootScope.user.userId || "";
+    else                    userId = "";
+>>>>>>> other
+    var baseUrl = $rootScope.baseUrl;
+
+    var viewCreateCourse = false;
+    $scope.viewIfCreateCourse = function () {return viewCreateCourse;};
+    $scope.toggleViewCreateCourse = function () {viewCreateCourse = !viewCreateCourse;};
+
+    $scope.course = {};
+    $scope.courses = [];
+
+    $scope.createCourse = function () {
+        CourseService.createCourse($scope.course, function () {
+            $scope.course = {};
+            $scope.courses.push(course);
+        });
+    };
+
+<<<<<<< local
+    $scope.getCourses = function () {
+        CourseService.getCourses(function (courses) {
+            $scope.courses = courses;
+        });
+    };
+=======
+        console.log(baseUrl);
+        if (!$scope.validate()) {
+            toastr.warning('You must enter all fields', 'Error');
+            console.log($scope.courseName, $scope.courseCredit, $scope.courseId);
+            return;
+        }
+>>>>>>> other
+
+    $scope.updateCourse = function (course) {
+        CourseService.updateCourse(course);
+    };
+
+    $scope.getTeachers = function(){
+        $http.get(baseUrl + "teachers")
+            .success(function (teachers) {
+                console.log('Teachers retrieved');
+                $scope.teachers = teachers;
+            })
+            .error(function (res, status) {
+                if (status == 401) {
+                    toastr.error('You are not authorized to do that', 'Error');
+                    //$state.go();
+                }
+<<<<<<< local
+                else {
+                    toastr.error('Could not retrieve teachers', 'Error');
+=======
+                else {
+                    toastr.error('Could not add course', 'Error');
+>>>>>>> other
+                }
+            })
+    };
+    $scope.getTeachers();
+    $scope.getCourses();
+    $scope.teachers= [
+        "Rayhan",
+        "Sakib",
+        "Rabi",
+        "Afrina"
+    ]
+    $scope.courses = [
+        {
+            courseName: "Network Security",
+            courseCode: 'CSE 802',
+            credit: '3',
+            teacherAssigned: 'Raihan',
+            semester: '8th'
+        },
+        {
+            courseName: "Network Security",
+            courseCode: 'CSE 802',
+            credit: '3',
+            teacherAssigned: 'Raihan',
+            semester: '8th'
+        }
+    ];
+    $scope.semesters = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
+
+<<<<<<< local
+=======
+    $scope.getCourses = function () {
+        $http.get(baseUrl + "allcourses", {userId: userId})
+            .success(function (courses) {
+                console.log('Courses retrieved for user: ' + userId);
+                $scope.courses = courses;
+            })
+            .error(function (res, status) {
+                if (status == 401) {
+                    toastr.error('You are not authorized to do that', 'Error');
+                    //$state.go();
+                }
+                else {
+                    toastr.error('Could not add course', 'Error');
+                }
+            })
+    }
+>>>>>>> other
+
+<<<<<<< local
+    $scope.validateSemester = function (data) {
+        if($scope.semesters.indexOf(data) > -1){     return true;    }
+        else                                         return "Incorrect input";
+=======
+    $scope.validate = function () {
+        return (!!$scope.courseName) && (!!$scope.courseId) && (!!$scope.courseCredit);
+    }
+
+    function init() {
+        $scope.courseName = "";
+        $scope.courseId = "";
+        $scope.courseCredit = "";
+>>>>>>> other
+    }
+
+});

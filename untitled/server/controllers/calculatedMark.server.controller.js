@@ -39,3 +39,20 @@ exports.getByCourseId = function(req, res) {
         res.json(marks);
     });
 }
+exports.getAllMarksByUserRollByCourseId = function(req,res){
+    console.log(req.params._id+req.params.roll);
+    CalculateMark.findOne({courseId:req.params._id},function(err, marks) {
+        if (err)
+            res.send(err);
+
+        else{
+            var markList = [];
+            for(var i=0;i<marks.listOfCategoryMark.length;i++){
+                if(marks.listOfCategoryMark[i].studentRoll == req.params.roll){
+                    markList.push(marks.listOfCategoryMark[i]);
+                }
+            }
+            res.send(markList);
+        }
+    });
+}
