@@ -11,7 +11,7 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-
+var FileSchema = require('./file.server.model.js').schema;
 /**
  * Category Schema
  */
@@ -21,7 +21,8 @@ var CourseSchema = new Schema({
     courseCode : String,
     credit : Number,
     teacherAssigned : String,
-    semester : String
+    semester : String,
+    fileList : [FileSchema]
 
 });
 
