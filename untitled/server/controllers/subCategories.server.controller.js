@@ -12,10 +12,37 @@
 var mongoose = require('mongoose');
 var SubCategory     = require('../models/subCategory.server.model.js');
 var Mark = require('../models/mark.server.model.js');
+var Course = require('../models/course.server.model.js');
+var User = require('../models/user.server.model.js');
 /**
  * Create a Category
  */
-exports.create = function(req, res) {
+exports.create = function(req,res){
+
+    Course.findOne({_id:req.params.courseId},function(err,course){
+        if(err) res.json(err);
+        var subCategory = new SubCategory();
+        subCategory.categoryId = req.params._id;
+        User.find({currentSemester:course.semester},function(err,users){
+            for(var i = 0;i<users.length;i++){
+                var mark = new Mark();
+                mark.studentName = users[i].userName;
+                mark.studentRoll = users[i].studentRoll;
+                mark.mark = 0;
+                subCategory.listOfMark.push(mark);
+            }
+            // save the bear and check for errors
+            subCategory.save(function(err) {
+                if (err)
+                    res.send(err);
+
+                res.json(subCategory);
+            });
+        });
+    });
+
+}
+/*exports.create = function(req, res) {
 
     var subCategory = new SubCategory();
     // create a new instance of the Bear model
@@ -38,6 +65,8 @@ exports.create = function(req, res) {
     });
 
 };
+*/
+
 
 exports.update = function(req, res) {
 
@@ -49,7 +78,7 @@ exports.update = function(req, res) {
             'description' : req.body.description,
             'isSelected' : req.body.isSelected,
             'date' : req.body.date,
-            'marksOutOf':req.body.marksOutOf,
+            'marksOutOf':req.body.marksOutOf || 0,
             'categoryId' : req.body.categoryId
         }},
         function(err, numAffected) {

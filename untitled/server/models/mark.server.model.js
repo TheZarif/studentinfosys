@@ -22,7 +22,8 @@ var MarkSchema = new Schema({
     // the property name
     studentName : String,
     studentRoll:  String,
-    mark : Number
+    mark : Number,
+    attendanceList : [Date]
 
 });
 

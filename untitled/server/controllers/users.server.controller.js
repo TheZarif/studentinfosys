@@ -26,6 +26,7 @@ exports.create = function(req, res) {
     user.isActive = req.body.isActive;
     user.batchNo = req.body.batchNo;
     user.currentSemester = req.body.currentSemester;
+    user.studentRoll = req.body.studentRoll;
     // save the bear and check for errors
     user.save(function(err) {
         if (err)
@@ -64,6 +65,7 @@ exports.update = function(req, res) {
         user.isActive = req.body.isActive;
         user.batchNo = req.body.batchNo;
         user.currentSemester = req.body.currentSemester;
+        user.studentRoll = req.body.studentRoll;
         // save the bear
         user.save(function(err) {
             if (err)
@@ -154,5 +156,13 @@ exports.getAllTeachersName = function(req, res) {
             res.send(err);}
     else{console.log(teachersName);
         res.json(teachersName);}
+    });
+}
+exports.getAllUsersForSemester = function(req,res){
+    User.find({ $and:[{currentSemester: req.params.semester},{roleId :'Student'}]},function(err,students){
+        if (err){console.log(err);
+            res.send(err);}
+        else{console.log(students);
+            res.json(students);}
     });
 }

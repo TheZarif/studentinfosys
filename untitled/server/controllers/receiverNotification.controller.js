@@ -21,16 +21,19 @@ var UserReceivesNotification     = require('../models/userReceivesNotification.s
  */
 exports.create = function(receiverId, eventNotificationId, eventNotification, res) {
 
-    var recieverNotification = new UserReceivesNotification();      // create a new instance of the Bear model
-    recieverNotification.receiverId = receiverId;
-    recieverNotification.eventNotificationId = eventNotificationId;
-    // save the bear and check for errors
-    recieverNotification.save(function(err) {
-        if (err)
-            console.log(err);
-        else res.json(eventNotification);
-    });
-    console.log("hurrah"+ recieverNotification);
+    for(var i=0;i<receiverId.length;i++){
+        var recieverNotification = new UserReceivesNotification();      // create a new instance of the Bear model
+        recieverNotification.receiverId = receiverId[i];
+        recieverNotification.eventNotificationId = eventNotificationId;
+        // save the bear and check for errors
+        recieverNotification.save(function(err,row) {
+            if (err)
+                console.log(err);
+            console.log(row);
+        });
+       // console.log("hurrah"+ recieverNotification);
+    }
+    res.json(eventNotification);
 };
 
 

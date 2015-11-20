@@ -9,38 +9,37 @@
 var mongoose = require('mongoose');
 var Category     = require('../models/category.server.model.js');
 var Mark = require('../models/mark.server.model.js');
+var Course     = require('../models/course.server.model.js');
+var User     = require('../models/user.server.model.js');
 /**
  * Create a Category
  */
-exports.create = function(req, res) {
+exports.create = function(req,res){
 
-    var category = new Category();
-    // create a new instance of the Bear model
-    category.name = req.body.name;  // set the bears name (comes from the request)
-    category.description = req.body.description;
-    category.weight = req.body.weight;
-    category.isSelected = req.body.isSelected;
-    category.date = req.body.date;
-    category.hasSubCategory = req.body.hasSubCategory;
-    if(category.hasSubCategory==true){
-        category.marksOutOf = 0;
-    }
-    else{ category.marksOutOf = req.body.marksOutOf; }
-    category.courseId = req.body.courseId;
+    Course.findOne({_id:req.params._id},function(err,course){
+        if(err) res.json(err);
+        var category = new Category();
+        category.courseId = req.params._id;
+        User.find({currentSemester:course.semester},function(err,users){
+            for(var i = 0;i<users.length;i++){
+                var mark = new Mark();
+                mark.studentName = users[i].userName;
+                mark.studentRoll = users[i].studentRoll;
+                mark.mark = 0;
+                mark.attendencelist = [];
+                category.listOfMark.push(mark);
+            }
+            // save the bear and check for errors
+            category.save(function(err) {
+                if (err)
+                    res.send(err);
 
-    for(var i=0;i<req.body.listOfMark.length;i++){
-        category.listOfMark.push(req.body.listOfMark[i]);
-        console.log(req.body.listOfMark[i]);
-    }
-    // save the bear and check for errors
-    category.save(function(err) {
-        if (err)
-            res.send(err);
-
-        res.json(category);
+                res.json(category);
+            });
+        });
     });
 
-};
+}
 
 exports.update = function(req, res) {
 
@@ -55,12 +54,14 @@ exports.update = function(req, res) {
             'isSelected' : req.body.isSelected,
             'date' : req.body.date,
             'hasSubCategory':req.body.hasSubCategory,
+            'isAttendance' : req.body.isAttendance,
+            'totalAttendanceList' : req.body.totalAttendanceList,
             'courseId' : req.body.courseId,
-            'marksOutOf' : req.body.marksOutOf
+            'marksOutOf' : req.body.marksOutOf || 0
         }},
         function(err, numAffected) {
-           // console.log("mairala");
-            res.json(numAffected);
+           if(err) res.json(err);
+          else res.json(numAffected);
         }
     );
 

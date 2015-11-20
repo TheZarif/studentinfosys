@@ -3,13 +3,20 @@
  */
 
 var express = require("express");
+var form;
+//form = require('connect-form');
+var multer = require('multer');
 var path = require('path');
 var app = express();
 var mongoose = require("mongoose");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 var session = require('express-session');
+var fs = require('fs');
 
+var upload  =  multer({ dest: './uploads/'});
+
+//app = module.exports = express.createServer(require('connect-form')({ keepExtensions: true, uploadDir:'./uploads' }));
 app.use(bodyParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -18,6 +25,9 @@ app.use(session({resave: true, saveUninitialized: true, secret: 'SOMERANDOMSECRE
 var logger = require("morgan");
 ///////////////////////auth
 app.use(logger('dev'));
+
+
+
 app.all('/*', function(req, res, next) {
     // CORS headers
     res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
@@ -47,6 +57,7 @@ var categoryController     = require('./controllers/categories.server.controller
 var subCategoryController     = require('./controllers/subCategories.server.controller.js');
 var calculatedMarkController     = require('./controllers/calculatedMark.server.controller.js');
 var markCalculationController = require('./controllers/markCalculation.server.controller.js');
+var fileController = require('./controllers/files.server.controller.js');
 var authorizationController = require('./authentication/auth');
 
 var checkAuthenticate = require('./middleWares/validateRequests');
@@ -60,56 +71,56 @@ router.route('/authenticate/roles')
 router.route('/roles/:_id')
     .get(roleController.getByRoleId)
     .put(roleController.update)
-        .delete(roleController.delete);
+    .delete(roleController.delete);
 //-------------------------------user
 /*
-router.route('/authenticate/users')
-    .post(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.create)
-    .get(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.list);
-router.route('/authenticate/users/:_id')
-    .get(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.getByUserId)
-    .put(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.update)
-    .delete(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.delete);
+ router.route('/authenticate/users')
+ .post(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.create)
+ .get(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.list);
+ router.route('/authenticate/users/:_id')
+ .get(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.getByUserId)
+ .put(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.update)
+ .delete(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeAdmin,userController.delete);
 
-router.route('/authenticate/allUsers/:_id').get(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeAdmin,userController.getUsersByRoleId);
-router.route('/authenticate/allStudents').get(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeAdmin,userController.getAllStudents);
-router.route('/authenticate/allTeachers').get(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeAdmin,userController.getAllTeachers);
-router.route('/authenticate/allAdmins').get(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeAdmin,userController.getAllAdmins);
-router.route('/authenticate/allStaffs').get(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeAdmin,userController.getAllStaffs);
-//--------------------------------course
-router.route('/authenticate/courses').get(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeAdmin,courseController.list);
-router.route('/authenticate/courses').post(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeAdmin,courseController.create)
+ router.route('/authenticate/allUsers/:_id').get(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeAdmin,userController.getUsersByRoleId);
+ router.route('/authenticate/allStudents').get(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeAdmin,userController.getAllStudents);
+ router.route('/authenticate/allTeachers').get(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeAdmin,userController.getAllTeachers);
+ router.route('/authenticate/allAdmins').get(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeAdmin,userController.getAllAdmins);
+ router.route('/authenticate/allStaffs').get(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeAdmin,userController.getAllStaffs);
+ //--------------------------------course
+ router.route('/authenticate/courses').get(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeAdmin,courseController.list);
+ router.route('/authenticate/courses').post(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeAdmin,courseController.create)
 
-router.route('/authenticate/courses/:_id')
-    .put(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeAdmin,courseController.update)
-    .delete(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeAdmin,courseController.delete);
-router.route('/authenticate/getCoursesForTeacher/:_id').get(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeTeacher,courseController.getCoursesForTeacher);
-router.route('/authenticate/getCoursesForStudent/:_id').get(checkAuthenticate.isAuthenticated,
-    checkAuthenticate.AuthorizeStudent,courseController.getCoursesForStudent);
-//-------------------------------eventnotification
-router.route('/authenticate/events')
-    .post(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeExceptStudent,eventNotificationController.create)
-    .get(checkAuthenticate.isAuthenticated,eventNotificationController.list);
-router.route('/authenticate/events/:_id')
-    .put(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeExceptStudent,eventNotificationController.update)
-    .delete(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeExceptStudent,eventNotificationController.delete);
-//-----------------------------------receiverNotification
-router.route('/authenticate/receiverEventList')
-    .get(checkAuthenticate.isAuthenticated,receiverNotification.list);
-router.route('/authenticate/receiverEventList/:_id')
-    .delete(checkAuthenticate.isAuthenticated,receiverNotification.delete);
-router.route('/authenticate/getNotificationsForUser/:_id')
-    .get(checkAuthenticate.isAuthenticated,receiverNotification.getNotificationsForUser);*/
+ router.route('/authenticate/courses/:_id')
+ .put(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeAdmin,courseController.update)
+ .delete(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeAdmin,courseController.delete);
+ router.route('/authenticate/getCoursesForTeacher/:_id').get(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeTeacher,courseController.getCoursesForTeacher);
+ router.route('/authenticate/getCoursesForStudent/:_id').get(checkAuthenticate.isAuthenticated,
+ checkAuthenticate.AuthorizeStudent,courseController.getCoursesForStudent);
+ //-------------------------------eventnotification
+ router.route('/authenticate/events')
+ .post(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeExceptStudent,eventNotificationController.create)
+ .get(checkAuthenticate.isAuthenticated,eventNotificationController.list);
+ router.route('/authenticate/events/:_id')
+ .put(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeExceptStudent,eventNotificationController.update)
+ .delete(checkAuthenticate.isAuthenticated,checkAuthenticate.AuthorizeExceptStudent,eventNotificationController.delete);
+ //-----------------------------------receiverNotification
+ router.route('/authenticate/receiverEventList')
+ .get(checkAuthenticate.isAuthenticated,receiverNotification.list);
+ router.route('/authenticate/receiverEventList/:_id')
+ .delete(checkAuthenticate.isAuthenticated,receiverNotification.delete);
+ router.route('/authenticate/getNotificationsForUser/:_id')
+ .get(checkAuthenticate.isAuthenticated,receiverNotification.getNotificationsForUser);*/
 
 //-----------------------------------------------------------------------------------------------------------------
 
@@ -121,6 +132,7 @@ router.route('/users/:_id')
     .put(userController.update)
     .delete(userController.delete);
 
+router.route('/getAllUsersForSemester/:semester').get(userController.getAllUsersForSemester);
 router.route('/allUsers/:_id').get(userController.getUsersByRoleId);
 router.route('/allStudents').get(userController.getAllStudents);
 router.route('/allTeachers').get(userController.getAllTeachers);
@@ -137,11 +149,11 @@ router.route('/getCoursesForTeacher/:_id').get(courseController.getCoursesForTea
 router.route('/getCoursesForStudent/:_id').get(courseController.getCoursesForStudent);
 //-------------------------------eventnotification
 router.route('/events')
-    .post(eventNotificationController.create)
     .get(eventNotificationController.list);
 router.route('/events/:_id')
     .put(eventNotificationController.update)
     .delete(eventNotificationController.delete);
+
 //-----------------------------------receiverNotification
 router.route('/receiverEventList')
     .get(receiverNotification.list);
@@ -151,13 +163,14 @@ router.route('/getNotificationsForUser/:_id')
     .get(receiverNotification.getNotificationsForUser);
 
 
-router.route('/categories').get(categoryController.list)
-    .post(categoryController.create);
+router.route('/categories').get(categoryController.list);
+
 router.route('/categories/getCategoriesByCourseId/:_id').get(categoryController.getCategoriesByCourseId);
 router.route('/categories/:_id').put(categoryController.update)
+    .post(categoryController.create)
     .delete(categoryController.delete);
-router.route('/subcategories').get(subCategoryController.list)
-    .post(subCategoryController.create);
+router.route('/subcategories').get(subCategoryController.list);
+router.route('/subcategories/:_id/:courseId').post(subCategoryController.create);
 router.route('/subcategories/getSubCategoriesByCategoryId/:_id').get(subCategoryController.getSubCategoriesByCategoryId)
 router.route('/subcategories/:_id').put(subCategoryController.update)
     .delete(subCategoryController.delete);
@@ -165,11 +178,17 @@ router.route('/getAllTeachersName').get(userController.getAllTeachersName);
 router.route('/getStudentCountByCourseId/:_id').get(courseController.getStudentCountByCourseId);
 
 router.route('/SaveCalculatedMarks/:_id').get(markCalculationController.SaveCalculatedMarks);
-router.route('/getIt/:_id').get(markCalculationController.getIt);
+router.route('/getMarksView/:_id').get(markCalculationController.getMarksView);
 
 router.route('/marks').get(calculatedMarkController.list);
 router.route('/marks/:_id').delete(calculatedMarkController.delete);
 router.route('/marks/:_id').get(calculatedMarkController.getByCourseId);
+
+router.route('/events').post(upload.array('uploadedFiles'),eventNotificationController.create);
+router.route('/getAllFileByNotificationId/:_id').get(eventNotificationController.getAllFileByNotificationId);
+router.route('/getFile/:_id/:fileId').get(fileController.getFile);
+router.route('/deleteFile/:path').get(fileController.deleteFile);
+
 /*
  * Routes that can be accessed by any one
  */

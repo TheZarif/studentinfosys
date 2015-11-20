@@ -23,6 +23,7 @@ var UserSchema = new Schema({
     isActive : Boolean,
     batchNo : String,
     currentSemester : String,
+    studentRoll : String
 });
 
 // Expose the model to other objects (similar to a 'public' setter).

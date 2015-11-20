@@ -19,10 +19,13 @@ var mongoose = require('mongoose'),
  */
 var FileSchema = new Schema({
 // the property name
-    name : String,
+    originalName : String,
+    uniqueName : String,
+    mimetype : String,
     size : Number,
-    location : String,
-    description : String
+    destination : String,
+    descriptionFolder : String,
+    destinationPath : String
 });
 
 // Expose the model to other objects (similar to a 'public' setter).

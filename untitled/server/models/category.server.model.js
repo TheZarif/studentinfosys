@@ -25,6 +25,8 @@ var CategorySchema = new Schema({
     hasSubCategory : Boolean,
     courseId : String,
     marksOutOf : Number,
+    isAttendance : Boolean,
+    totalAttendanceList : [Date],
     listOfMark : [listOfMark]
 
 });

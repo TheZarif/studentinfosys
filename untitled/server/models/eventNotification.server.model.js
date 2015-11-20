@@ -14,7 +14,7 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-
+var FileSchema = require('./file.server.model.js').schema;
 /**
  * Category Schema
  */
@@ -24,11 +24,12 @@ var EventNotificationSchema = new Schema({
     type : String,
     description : String,
     subject : String,
-    receiverId : String,
+    receiverId : [String],
     hasFile : Boolean,
     fileUrl : String,
     sentDate : Date,
-    eventDate : Date
+    eventDate : Date,
+    fileList : [FileSchema]
 });
 
 // Expose the model to other objects (similar to a 'public' setter).
