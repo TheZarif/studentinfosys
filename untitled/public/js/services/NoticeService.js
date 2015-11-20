@@ -5,11 +5,20 @@
 app.service('NoticeService', function ($http, toastr, $rootScope) {
     var baseUrl = $rootScope.baseUrl;
 
-    this.createNotice = function (event, successFunc, errFunc) {
+    this.createNotice = function (event, semesters, successFunc, errFunc) {
         if(!validate(event)) {
             toastr.warning('You must enter all fields', 'Error');
             return;
         }
+
+        for(var i=0; i<semesters.length; i++){
+            $http.get(baseUrl + 'getUsersBySemester/' + semesters[i])
+                .then(function (data) {
+
+                })
+        }
+
+        
 
         $http.post(baseUrl + "events", event)
             .success(function (data) {
@@ -32,7 +41,7 @@ app.service('NoticeService', function ($http, toastr, $rootScope) {
             .success(function (notifications) {
                 if(successFunc)     successFunc();
                 console.log('notifications retrieved for user: '+ userId);
-                this.events = events;
+                this.events = notifications;
             })
             .error(function (res, status) {
                 if(status == 401) {

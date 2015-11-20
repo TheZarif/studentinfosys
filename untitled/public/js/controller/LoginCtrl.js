@@ -22,7 +22,8 @@ ctrls.controller('LoginCtrl', function ($scope, $http, $rootScope, $state, toast
                     $window.sessionStorage.email = data.user.email;
                     $window.sessionStorage.roleId = data.user.roleId;
                     $window.sessionStorage.userName = data.user.userName;
-                    $window.sessionStorage.userId = data.user.userId;
+                    $window.sessionStorage._id = data.user._id;
+                    $window.sessionStorage.userId = data.user._id;
 
                     toastr.success('Logged in!', 'Success!');
                     $state.go('dashboard')

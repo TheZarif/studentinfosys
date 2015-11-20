@@ -1,27 +1,48 @@
 <div class="panel panel-default col-md-9">
     <div class="panel-body">
-        <form id="create-notice-form" class="form-horizontal" role="form">
-            <div style="margin-bottom: 25px" class="input-group">
-                Subject:
-                <input id="subject" ng-model="event.subject" type="text" class="form-control" placeholder="Subject" required>
-            </div>
+        <div style="margin-bottom: 25px" class="input-group">
+            Subject:
+            <input id="subject" ng-model="event.subject" type="text" class="form-control" placeholder="Subject"
+                   required>
+        </div>
 
-            <div style="margin-bottom: 25px" class="input-group">
-                Message:
-                <textarea id="description" ng-model="event.description" rows="5" class="form-control" placeholder="Description"></textarea>
-            </div>
+        <div style="margin-bottom: 25px">
+            Send to:
+                <span ng-repeat="rec in sendTo.arr">
+                        <a href="#" editable-text="rec">
+                            {{ rec }},
+                        </a>
+                </span>
+            <a href="#" editable-text="sendTo.newSendTo" e-typeahead="option for option in sendTo.options" onBeforeSave="addSendTo($data)">
+                {{ 'add' }}
+            </a>
+        </div>
 
-            <div style="margin-bottom: 25px" class="input-group">
-                Upload file
-                <input id="credit" type="file" class="form-control" name="file">
-            </div>
+        <div style="margin-bottom: 25px" class="input-group">
+            Message:
+            <textarea id="description" ng-model="event.description" rows="5" class="form-control"
+                      placeholder="Description"></textarea>
+        </div>
 
-            <div style="margin-top:10px" class="form-group">
-                <!-- Button -->
-                <div class="col-sm-12 controls">
-                    <a id="btn-create" href="" class="btn btn-success" ng-click="createNotice()">Create Notice</a>
-                </div>
+        <div>
+            Date :
+            <a href="#" editable-bsdate="event.eventDate" onshow="openPicker()" onhide="closePicker()"
+               e-is-open="picker.opened" e-init-date="false" e-datepicker-popup="dd-MMMM-yyyy">
+                {{ (event.eventDate | date:"dd/MM/yyyy") || 'add date' }}
+            </a>
+        </div>
+
+        <div style="margin-bottom: 25px" class="input-group">
+            Upload file
+            <input id="credit" type="file" class="form-control" name="file">
+        </div>
+
+        <div style="margin-top:10px" class="form-group">
+            <!-- Button -->
+            <div class="col-sm-12 controls">
+                <a id="btn-create" href="" class="btn btn-success" ng-click="createNotice()">Create Notice</a>
             </div>
-        </form>
+        </div>
+
     </div>
 </div>

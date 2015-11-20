@@ -5,20 +5,27 @@
 
 ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, AuthenticationFactory, CourseService, CategoryService, $timeout) {
 
-    var userId = AuthenticationFactory.user.userId;
+    var user = AuthenticationFactory.user;
 
     $scope.addCategory = function () {
-        $scope.categories.push({})
+        CategoryService.addCategory($scope.selectedCourse._id, function (data) {
+            $scope.categories.push(data)
+        });
         $scope.validationError = "All fields must be entered";
     };
 
     $scope.addSubCategory = function () {
-        $scope.subCategories.push({name: $scope.selectedCategory.name + " " + ($scope.subCategories.length + 1)})
-        $scope.subCategories[$scope.subCategories.length-1].open = true;
+        CategoryService.addSubCategory($scope.selectedCategory._id, $scope.selectedCourse._id, function (data) {
+            $scope.subCategories.push(data);
+            $scope.subCategories[$scope.subCategories.length-1].open = true;
+        });
     }
 
     $scope.selectCourse = function (course) {
         $scope.selectedCourse = course;
+        $scope.categories = {};
+        $scope.subCategories = {};
+        $scope.selectedCategory = {};
         getCategories();
     };
 
@@ -33,7 +40,7 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
 
     $scope.updateCategoriesForCourse = function (course) {
         if ($scope.validateCategories()) {
-            CategoryService.updateAllCategoriesForCourse(course, $scope.categories)
+            CategoryService.updateCategories($scope.categories)
         }
     };
 
@@ -130,13 +137,13 @@ ctrls.controller('TeacherCtrl', function ($scope, $rootScope, toastr, Authentica
         $scope.selectedCategory = $scope.categories[0];
     }
 
-    function init() {
-        CourseService.getCoursesForTeacher(userId, function (courses) {
+    var init = function () {
+        CourseService.getCoursesForTeacher(user.userId, function (courses) {
             $scope.courses = courses;
         });
     }
 
-    offlineInit();
+    //offlineInit();
     init();
 
     $scope.validateCategories = function () {

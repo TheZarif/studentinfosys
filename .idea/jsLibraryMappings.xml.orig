@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+<<<<<<< local
+    <file url="PROJECT" libraries="{jasmine-DefinitelyTyped, mongoose-DefinitelyTyped}" />
+    <includedPredefinedLibrary name="Node.js Globals" />
+=======
+    <file url="PROJECT" libraries="{express-DefinitelyTyped, mongoose-DefinitelyTyped}" />
+>>>>>>> other
+  </component>
+</project>

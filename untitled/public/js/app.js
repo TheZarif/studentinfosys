@@ -15,7 +15,7 @@ var app = angular.module("app",[
 
 app.run(function ($rootScope, $window, $location, AuthenticationFactory) {
 
-    $rootScope.baseUrl = "http://localhost:3000/api/authenticate/";
+    $rootScope.baseUrl = "http://10.255.7.40:3000/api/";
 
     var offlineInitUser = function () {
         AuthenticationFactory.isLogged = true;
@@ -27,8 +27,8 @@ app.run(function ($rootScope, $window, $location, AuthenticationFactory) {
         }
     };
 
-    offlineInitUser(); //For testing purpose
-    //AuthenticationFactory.check();
+    //offlineInitUser(); //For testing purpose
+    AuthenticationFactory.check();
     $rootScope.$on("$stateChangeStart", function(event, nextRoute) {
         if ((nextRoute.access && nextRoute.access.requiredLogin) && !AuthenticationFactory.isLogged) {
             $location.path("/login");
@@ -39,7 +39,8 @@ app.run(function ($rootScope, $window, $location, AuthenticationFactory) {
                     userName    : $window.sessionStorage.userName,
                     userId      : $window.sessionStorage.userId,
                     roleId      : $window.sessionStorage.roleId,
-                    email       : $window.sessionStorage.email
+                    email       : $window.sessionStorage.email,
+                    token       : $window.sessionStorage.token
                 }
             }
         }

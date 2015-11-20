@@ -2,15 +2,29 @@
  * Created by Zarif on 08/11/2015.
  */
 
-ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, NoticeService, toastr, AuthorizationFactory, AuthenticationFactory) {
+ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, NoticeService, toastr, AuthorizationFactory, AuthenticationFactory, $timeout) {
     //if(!$rootScope.user) $state.go('login')
 
-    var userId = AuthenticationFactory.user.userId;
+    var userId = AuthenticationFactory.user._id;
     $scope.roleType = AuthenticationFactory.user.roleId;
 
     $scope.authorizer = AuthorizationFactory;
 
     $scope.event = {};
+    $scope.sendTos = [];
+    $scope.sendTo = {
+        arr : [],
+        newSendTo: "",
+        options : [
+            "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"
+        ]
+    }
+
+    $scope.addSendTo = function (data) {
+        $scope.sendTo.arr.push(data);
+        $scope.sendTo.newSendTo = '';
+        return false;
+    }
 
     var viewCreateNotice = false;
     $scope.viewIfCreateNotice = function () {
@@ -21,7 +35,7 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, NoticeServi
     };
 
     $scope.createNotice = function () {
-        NoticeService.createNotice($scope.event,
+        NoticeService.createNotice($scope.event, $scope.sendTo.options,
             function () {
                 $scope.event = {};
             });
@@ -62,5 +76,17 @@ ctrls.controller('NoticeCtrl', function ($scope, $rootScope, $state, NoticeServi
         var index = events.indexOf(event);
         if(index > -1)      events.splice(index, 1);
     }
+
+    $scope.openPicker = function () {
+        $timeout(function () {
+            $scope.picker.opened = true;
+        });
+    };
+
+    $scope.closePicker = function () {
+        $scope.picker.opened = false;
+    };
+
+    $scope.picker = {opened: false};
 
 });

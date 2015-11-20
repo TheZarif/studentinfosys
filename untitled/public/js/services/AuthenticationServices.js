@@ -5,7 +5,7 @@ app.factory('AuthenticationFactory', function($window) {
     var auth = {
         isLogged: false,
         check: function() {
-            if ($window.sessionStorage.token && $window.sessionStorage.user) {
+            if ($window.sessionStorage.token && $window.sessionStorage.userName) {
                 this.isLogged = true;
             } else {
                 this.isLogged = false;
@@ -20,7 +20,7 @@ app.factory('AuthenticationFactory', function($window) {
 app.factory('UserAuthFactory', function($window, $location, $http, AuthenticationFactory) {
     return {
         login: function(email, password) {
-            return $http.post('http://localhost:3000/api/login', {
+            return $http.post('http://10.255.7.40:3000/api/login', {
                 email: email,
                 password: password
             });

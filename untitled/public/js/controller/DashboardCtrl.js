@@ -2,7 +2,7 @@
  * Created by Zarif on 08/11/2015.
  */
 
-ctrls.controller('DashboardCtrl', function (DashboardFactory, $rootScope, $scope, AuthenticationFactory, toastr, $location) {
+ctrls.controller('DashboardCtrl', function (DashboardFactory, $rootScope, $scope, AuthenticationFactory, toastr, $state) {
 
     if(AuthenticationFactory.isLogged){
         var user = AuthenticationFactory.user;
@@ -16,7 +16,7 @@ ctrls.controller('DashboardCtrl', function (DashboardFactory, $rootScope, $scope
     }
     else{
         toastr.warning('The page you are trying to access requires you to log in', "Oops!");
-        $location('/login');
+        $state.go('/login');
     }
 
 });
